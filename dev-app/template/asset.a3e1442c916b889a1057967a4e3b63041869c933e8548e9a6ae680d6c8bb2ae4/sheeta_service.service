@@ -1,0 +1,14 @@
+[Unit]
+Description=Start the project zomboid server script as a service
+AssertPathExists=/mnt/sheeta/start-server.sh
+
+[Service]
+RemainAfterExit=yes
+Restart=always
+RestartSec=10
+StartLimitInterval=0
+TimeoutStartSec=0
+ExecStart=/bin/sh -c '/mnt/sheeta/start-server.sh -servername sheeta -adminpassword PasswordXYZ -cachedir=/mnt/sheeta'
+
+[Install]
+WantedBy=multi-user.target

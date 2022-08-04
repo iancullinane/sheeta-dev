@@ -1,0 +1,19 @@
+{
+  "version": "17.0.0",
+  "files": {
+    "9efe56f63b552032b5ec42b4370cba0cde71b4954c32570e6eea7f73f45c4a40": {
+      "source": {
+        "path": "CertsStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "9efe56f63b552032b5ec42b4370cba0cde71b4954c32570e6eea7f73f45c4a40.json",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

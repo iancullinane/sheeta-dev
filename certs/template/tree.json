@@ -1,0 +1,135 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "constructs.Construct",
+          "version": "10.1.42"
+        }
+      },
+      "CertsStack": {
+        "id": "CertsStack",
+        "path": "CertsStack",
+        "children": {
+          "sheeta-cert": {
+            "id": "sheeta-cert",
+            "path": "CertsStack/sheeta-cert",
+            "children": {
+              "sheeta.cloud-tld-hz": {
+                "id": "sheeta.cloud-tld-hz",
+                "path": "CertsStack/sheeta-cert/sheeta.cloud-tld-hz",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "CertsStack/sheeta-cert/sheeta.cloud-tld-hz/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Route53::HostedZone",
+                      "aws:cdk:cloudformation:props": {
+                        "name": "sheeta.cloud."
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_route53.CfnHostedZone",
+                      "version": "2.28.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_route53.HostedZone",
+                  "version": "2.28.0"
+                }
+              },
+              "Certificate": {
+                "id": "Certificate",
+                "path": "CertsStack/sheeta-cert/Certificate",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "CertsStack/sheeta-cert/Certificate/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::CertificateManager::Certificate",
+                      "aws:cdk:cloudformation:props": {
+                        "domainName": "sheeta.cloud",
+                        "subjectAlternativeNames": [
+                          "*.sheeta.cloud"
+                        ],
+                        "validationMethod": "DNS"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_certificatemanager.CfnCertificate",
+                      "version": "2.28.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_certificatemanager.Certificate",
+                  "version": "2.28.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.42"
+            }
+          },
+          "sheeta-dev-cert-arn": {
+            "id": "sheeta-dev-cert-arn",
+            "path": "CertsStack/sheeta-dev-cert-arn",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.22.0"
+            }
+          },
+          "sheeta-dev-hz-id": {
+            "id": "sheeta-dev-hz-id",
+            "path": "CertsStack/sheeta-dev-hz-id",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.22.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "CertsStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "CertsStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.22.0"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "CertsStack/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnCondition",
+                  "version": "2.22.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.42"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.22.0"
+        }
+      }
+    },
+    "constructInfo": {
+      "fqn": "aws-cdk-lib.App",
+      "version": "2.22.0"
+    }
+  }
+}
