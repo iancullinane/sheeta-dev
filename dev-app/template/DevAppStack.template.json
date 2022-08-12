@@ -160,375 +160,28 @@
     "aws:cdk:path": "DevAppStack/ec2Role/DefaultPolicy/Resource"
    }
   },
-  "sheetadevvpcbasevpcsheetadev630493EF": {
-   "Type": "AWS::EC2::VPC",
+  "sheetadevvpcNestedStacksheetadevvpcNestedStackResourceECF35E3A": {
+   "Type": "AWS::CloudFormation::Stack",
    "Properties": {
-    "CidrBlock": "192.168.0.0/16",
-    "EnableDnsHostnames": true,
-    "EnableDnsSupport": true,
-    "InstanceTenancy": "default",
-    "Tags": [
-     {
-      "Key": "Environment",
-      "Value": "dev"
-     },
-     {
-      "Key": "Name",
-      "Value": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev"
-     }
-    ]
-   },
-   "Metadata": {
-    "aws:cdk:path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/Resource"
-   }
-  },
-  "sheetadevvpcbasevpcsheetadevPublicSubnet1Subnet8F5DA99D": {
-   "Type": "AWS::EC2::Subnet",
-   "Properties": {
-    "VpcId": {
-     "Ref": "sheetadevvpcbasevpcsheetadev630493EF"
-    },
-    "AvailabilityZone": "us-east-2a",
-    "CidrBlock": "192.168.0.0/17",
-    "MapPublicIpOnLaunch": true,
-    "Tags": [
-     {
-      "Key": "aws-cdk:subnet-name",
-      "Value": "Public"
-     },
-     {
-      "Key": "aws-cdk:subnet-type",
-      "Value": "Public"
-     },
-     {
-      "Key": "Environment",
-      "Value": "dev"
-     },
-     {
-      "Key": "Name",
-      "Value": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1"
-     }
-    ]
-   },
-   "Metadata": {
-    "aws:cdk:path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/Subnet"
-   }
-  },
-  "sheetadevvpcbasevpcsheetadevPublicSubnet1RouteTable4B9A5BF1": {
-   "Type": "AWS::EC2::RouteTable",
-   "Properties": {
-    "VpcId": {
-     "Ref": "sheetadevvpcbasevpcsheetadev630493EF"
-    },
-    "Tags": [
-     {
-      "Key": "Environment",
-      "Value": "dev"
-     },
-     {
-      "Key": "Name",
-      "Value": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1"
-     }
-    ]
-   },
-   "Metadata": {
-    "aws:cdk:path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/RouteTable"
-   }
-  },
-  "sheetadevvpcbasevpcsheetadevPublicSubnet1RouteTableAssociation2433C504": {
-   "Type": "AWS::EC2::SubnetRouteTableAssociation",
-   "Properties": {
-    "RouteTableId": {
-     "Ref": "sheetadevvpcbasevpcsheetadevPublicSubnet1RouteTable4B9A5BF1"
-    },
-    "SubnetId": {
-     "Ref": "sheetadevvpcbasevpcsheetadevPublicSubnet1Subnet8F5DA99D"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/RouteTableAssociation"
-   }
-  },
-  "sheetadevvpcbasevpcsheetadevPublicSubnet1DefaultRouteD651E005": {
-   "Type": "AWS::EC2::Route",
-   "Properties": {
-    "RouteTableId": {
-     "Ref": "sheetadevvpcbasevpcsheetadevPublicSubnet1RouteTable4B9A5BF1"
-    },
-    "DestinationCidrBlock": "0.0.0.0/0",
-    "GatewayId": {
-     "Ref": "sheetadevvpcbasevpcsheetadevIGW3244CA7E"
-    }
-   },
-   "DependsOn": [
-    "sheetadevvpcbasevpcsheetadevVPCGW64A5120C"
-   ],
-   "Metadata": {
-    "aws:cdk:path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/DefaultRoute"
-   }
-  },
-  "sheetadevvpcbasevpcsheetadevPublicSubnet1NatInstanceInstanceProfileA7588A7E": {
-   "Type": "AWS::IAM::InstanceProfile",
-   "Properties": {
-    "Roles": [
-     {
-      "Ref": "sheetadevvpcbasevpcsheetadevNatRole11C02F88"
-     }
-    ]
-   },
-   "Metadata": {
-    "aws:cdk:path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/NatInstance/InstanceProfile"
-   }
-  },
-  "sheetadevvpcbasevpcsheetadevPublicSubnet1NatInstance4F876A6E": {
-   "Type": "AWS::EC2::Instance",
-   "Properties": {
-    "AvailabilityZone": "us-east-2a",
-    "IamInstanceProfile": {
-     "Ref": "sheetadevvpcbasevpcsheetadevPublicSubnet1NatInstanceInstanceProfileA7588A7E"
-    },
-    "ImageId": "ami-076510d448bea6be7",
-    "InstanceType": "t2.micro",
-    "SecurityGroupIds": [
-     {
-      "Fn::GetAtt": [
-       "sheetadevvpcbasevpcsheetadevNatSecurityGroupF92DCFC1",
-       "GroupId"
+    "TemplateURL": {
+     "Fn::Join": [
+      "",
+      [
+       "https://s3.us-east-2.",
+       {
+        "Ref": "AWS::URLSuffix"
+       },
+       "/cdk-hnb659fds-assets-208744038881-us-east-2/61668902f3935ffbabd4e3c2488eb5c20829fb8e5354829cd10eb7bb7c7a1116.json"
       ]
-     }
-    ],
-    "SourceDestCheck": false,
-    "SubnetId": {
-     "Ref": "sheetadevvpcbasevpcsheetadevPublicSubnet1Subnet8F5DA99D"
-    },
-    "Tags": [
-     {
-      "Key": "Environment",
-      "Value": "dev"
-     },
-     {
-      "Key": "Name",
-      "Value": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/NatInstance"
-     }
-    ],
-    "UserData": {
-     "Fn::Base64": "#!/bin/bash"
+     ]
     }
    },
-   "DependsOn": [
-    "sheetadevvpcbasevpcsheetadevNatRole11C02F88"
-   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
    "Metadata": {
-    "aws:cdk:path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/NatInstance/Resource"
-   }
-  },
-  "sheetadevvpcbasevpcsheetadevPrivateSubnet1SubnetA3060B6E": {
-   "Type": "AWS::EC2::Subnet",
-   "Properties": {
-    "VpcId": {
-     "Ref": "sheetadevvpcbasevpcsheetadev630493EF"
-    },
-    "AvailabilityZone": "us-east-2a",
-    "CidrBlock": "192.168.128.0/17",
-    "MapPublicIpOnLaunch": false,
-    "Tags": [
-     {
-      "Key": "aws-cdk:subnet-name",
-      "Value": "Private"
-     },
-     {
-      "Key": "aws-cdk:subnet-type",
-      "Value": "Private"
-     },
-     {
-      "Key": "Environment",
-      "Value": "dev"
-     },
-     {
-      "Key": "Name",
-      "Value": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PrivateSubnet1"
-     }
-    ]
-   },
-   "Metadata": {
-    "aws:cdk:path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PrivateSubnet1/Subnet"
-   }
-  },
-  "sheetadevvpcbasevpcsheetadevPrivateSubnet1RouteTable354522CE": {
-   "Type": "AWS::EC2::RouteTable",
-   "Properties": {
-    "VpcId": {
-     "Ref": "sheetadevvpcbasevpcsheetadev630493EF"
-    },
-    "Tags": [
-     {
-      "Key": "Environment",
-      "Value": "dev"
-     },
-     {
-      "Key": "Name",
-      "Value": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PrivateSubnet1"
-     }
-    ]
-   },
-   "Metadata": {
-    "aws:cdk:path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PrivateSubnet1/RouteTable"
-   }
-  },
-  "sheetadevvpcbasevpcsheetadevPrivateSubnet1RouteTableAssociationE28F78D8": {
-   "Type": "AWS::EC2::SubnetRouteTableAssociation",
-   "Properties": {
-    "RouteTableId": {
-     "Ref": "sheetadevvpcbasevpcsheetadevPrivateSubnet1RouteTable354522CE"
-    },
-    "SubnetId": {
-     "Ref": "sheetadevvpcbasevpcsheetadevPrivateSubnet1SubnetA3060B6E"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PrivateSubnet1/RouteTableAssociation"
-   }
-  },
-  "sheetadevvpcbasevpcsheetadevPrivateSubnet1DefaultRoute52AB5B7F": {
-   "Type": "AWS::EC2::Route",
-   "Properties": {
-    "RouteTableId": {
-     "Ref": "sheetadevvpcbasevpcsheetadevPrivateSubnet1RouteTable354522CE"
-    },
-    "DestinationCidrBlock": "0.0.0.0/0",
-    "InstanceId": {
-     "Ref": "sheetadevvpcbasevpcsheetadevPublicSubnet1NatInstance4F876A6E"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PrivateSubnet1/DefaultRoute"
-   }
-  },
-  "sheetadevvpcbasevpcsheetadevIGW3244CA7E": {
-   "Type": "AWS::EC2::InternetGateway",
-   "Properties": {
-    "Tags": [
-     {
-      "Key": "Environment",
-      "Value": "dev"
-     },
-     {
-      "Key": "Name",
-      "Value": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev"
-     }
-    ]
-   },
-   "Metadata": {
-    "aws:cdk:path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/IGW"
-   }
-  },
-  "sheetadevvpcbasevpcsheetadevVPCGW64A5120C": {
-   "Type": "AWS::EC2::VPCGatewayAttachment",
-   "Properties": {
-    "VpcId": {
-     "Ref": "sheetadevvpcbasevpcsheetadev630493EF"
-    },
-    "InternetGatewayId": {
-     "Ref": "sheetadevvpcbasevpcsheetadevIGW3244CA7E"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/VPCGW"
-   }
-  },
-  "sheetadevvpcbasevpcsheetadevNatSecurityGroupF92DCFC1": {
-   "Type": "AWS::EC2::SecurityGroup",
-   "Properties": {
-    "GroupDescription": "Security Group for NAT instances",
-    "SecurityGroupEgress": [
-     {
-      "CidrIp": "0.0.0.0/0",
-      "Description": "Allow all outbound traffic by default",
-      "IpProtocol": "-1"
-     }
-    ],
-    "SecurityGroupIngress": [
-     {
-      "CidrIp": "0.0.0.0/0",
-      "Description": "from 0.0.0.0/0:ALL TRAFFIC",
-      "IpProtocol": "-1"
-     }
-    ],
-    "Tags": [
-     {
-      "Key": "Environment",
-      "Value": "dev"
-     },
-     {
-      "Key": "Name",
-      "Value": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev"
-     }
-    ],
-    "VpcId": {
-     "Ref": "sheetadevvpcbasevpcsheetadev630493EF"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/NatSecurityGroup/Resource"
-   }
-  },
-  "sheetadevvpcbasevpcsheetadevNatRole11C02F88": {
-   "Type": "AWS::IAM::Role",
-   "Properties": {
-    "AssumeRolePolicyDocument": {
-     "Statement": [
-      {
-       "Action": "sts:AssumeRole",
-       "Effect": "Allow",
-       "Principal": {
-        "Service": "ec2.amazonaws.com"
-       }
-      }
-     ],
-     "Version": "2012-10-17"
-    },
-    "Tags": [
-     {
-      "Key": "Environment",
-      "Value": "dev"
-     },
-     {
-      "Key": "Name",
-      "Value": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev"
-     }
-    ]
-   },
-   "Metadata": {
-    "aws:cdk:path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/NatRole/Resource"
-   }
-  },
-  "sheetadevvpcSG3234C151": {
-   "Type": "AWS::EC2::SecurityGroup",
-   "Properties": {
-    "GroupDescription": "DevAppStack/sheeta-dev-vpc/SG",
-    "SecurityGroupEgress": [
-     {
-      "CidrIp": "0.0.0.0/0",
-      "Description": "Allow all outbound traffic by default",
-      "IpProtocol": "-1"
-     }
-    ],
-    "Tags": [
-     {
-      "Key": "Environment",
-      "Value": "dev"
-     },
-     {
-      "Key": "Name",
-      "Value": "sheeta-dev-base-vpc"
-     }
-    ],
-    "VpcId": {
-     "Ref": "sheetadevvpcbasevpcsheetadev630493EF"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "DevAppStack/sheeta-dev-vpc/SG/Resource"
+    "aws:cdk:path": "DevAppStack/sheeta-dev-vpc.NestedStack/sheeta-dev-vpc.NestedStackResource",
+    "aws:asset:path": "DevAppStacksheetadevvpc96536263.nested.template.json",
+    "aws:asset:property": "TemplateURL"
    }
   },
   "projectzomboidserversgidDC54B61C": {
@@ -543,7 +196,10 @@
      }
     ],
     "VpcId": {
-     "Ref": "sheetadevvpcbasevpcsheetadev630493EF"
+     "Fn::GetAtt": [
+      "sheetadevvpcNestedStacksheetadevvpcNestedStackResourceECF35E3A",
+      "Outputs.DevAppStacksheetadevvpcbasevpcsheetadev923E1ADDRef"
+     ]
     }
    },
    "Metadata": {
@@ -588,7 +244,10 @@
      }
     ],
     "SubnetId": {
-     "Ref": "sheetadevvpcbasevpcsheetadevPublicSubnet1Subnet8F5DA99D"
+     "Fn::GetAtt": [
+      "sheetadevvpcNestedStacksheetadevvpcNestedStackResourceECF35E3A",
+      "Outputs.DevAppStacksheetadevvpcbasevpcsheetadevPublicSubnet1SubnetB41FFE58Ref"
+     ]
     },
     "Tags": [
      {
@@ -619,7 +278,7 @@
             {
              "Ref": "projectzomboidserversheetavol5987B3C5"
             },
-            " --instance-id $INSTANCE_ID --device /dev/xvdf\nwhile ! test -e /dev/xvdf; do sleep 1; done\nmkfs -t xfs /dev/xvdf\nmkdir /mnt/sheeta\nmount /dev/xvdf /mnt/sheeta\necho \"UUID=$(lsblk -o +UUID | grep thepain | awk '{print $8}') /mnt/sheeta  xfs  defaults,nofail  0  2\" >> /etc/fstab\necho \"---- Add users\"\nsudo usermod -aG docker ubuntu\nsudo usermod -aG docker steam\necho \"---- Install PZ\"\nmkdir /mnt/sheeta\ndocker run -v /mnt/sheeta:/data steamcmd/steamcmd:ubuntu-18         +login anonymous         +force_install_dir /data         +app_update 380870 validate         +quit\nmkdir -p $(dirname '/mnt/sheeta/files/')\naws s3 cp 's3://cdk-hnb659fds-assets-208744038881-us-east-2/98c615ce1e1149254eb3293232ea38c68eae1695f7fa07cc380f2eb355f06f94.zip' '/mnt/sheeta/files/'\nmkdir -p $(dirname '/mnt/sheeta/files/')\naws s3 cp 's3://cdk-hnb659fds-assets-208744038881-us-east-2/a3e1442c916b889a1057967a4e3b63041869c933e8548e9a6ae680d6c8bb2ae4.zip' '/mnt/sheeta/files/'\nmkdir -p /mnt/sheeta/Server/\nunzip /mnt/sheeta/files/98c615ce1e1149254eb3293232ea38c68eae1695f7fa07cc380f2eb355f06f94.zip -d /mnt/sheeta/Server/\nunzip /mnt/sheeta/files/a3e1442c916b889a1057967a4e3b63041869c933e8548e9a6ae680d6c8bb2ae4.zip -d /etc/systemd/system/\nchmod +x /etc/systemd/system/sheeta.service\nsystemctl enable sheeta_service.service\nsystemctl start sheeta_service.service"
+            " --instance-id $INSTANCE_ID --device /dev/xvdf\nwhile ! test -e /dev/xvdf; do sleep 1; done\nmkfs -t xfs /dev/xvdf\nmkdir /mnt/sheeta\nmount /dev/xvdf /mnt/sheeta\necho \"UUID=$(lsblk -o +UUID | grep thepain | awk '{print $8}') /mnt/sheeta  xfs  defaults,nofail  0  2\" >> /etc/fstab\necho \"---- Add users\"\nsudo usermod -aG docker ubuntu\nsudo usermod -aG docker steam\necho \"---- Install PZ\"\nmkdir /mnt/sheeta\ndocker run -v /mnt/sheeta:/data steamcmd/steamcmd:ubuntu-18         +login anonymous         +force_install_dir /data         +app_update 380870 validate         +quit\nmkdir -p $(dirname '/mnt/sheeta/files/')\naws s3 cp 's3://cdk-hnb659fds-assets-208744038881-us-east-2/9cf8071398f381ec20504a3e2efb9bd5060f49d4278a8f32430112ea2e3fc534.zip' '/mnt/sheeta/files/'\nmkdir -p $(dirname '/mnt/sheeta/files/')\naws s3 cp 's3://cdk-hnb659fds-assets-208744038881-us-east-2/a3e1442c916b889a1057967a4e3b63041869c933e8548e9a6ae680d6c8bb2ae4.zip' '/mnt/sheeta/files/'\nmkdir -p /mnt/sheeta/Server/\nunzip /mnt/sheeta/files/9cf8071398f381ec20504a3e2efb9bd5060f49d4278a8f32430112ea2e3fc534.zip -d /mnt/sheeta/Server/\nunzip /mnt/sheeta/files/a3e1442c916b889a1057967a4e3b63041869c933e8548e9a6ae680d6c8bb2ae4.zip -d /etc/systemd/system/\nchmod +x /etc/systemd/system/sheeta.service\nsystemctl enable sheeta_service.service\nsystemctl start sheeta_service.service"
            ]
           ]
          }
@@ -708,7 +367,10 @@
      }
     ],
     "VpcId": {
-     "Ref": "sheetadevvpcbasevpcsheetadev630493EF"
+     "Fn::GetAtt": [
+      "sheetadevvpcNestedStacksheetadevvpcNestedStackResourceECF35E3A",
+      "Outputs.DevAppStacksheetadevvpcbasevpcsheetadev923E1ADDRef"
+     ]
     }
    },
    "Metadata": {
@@ -769,7 +431,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1VRwW7CMAz9lt1DNkBMuxYODE3aqnbqYReUpoaFtgmKHVBV9d+XJmxlp/f8/OJnKwu+eOFPD+KKM1nVs0aVvM9JyJp5ad/XLfL+DTq2OWgPA1Oi5X1mGhiVgKlplAyGie00ktASUmsOqoGBgVzwvjjLsVmkG5a60ntzV2qgUZtYZhzBpyhjQtQnLUE0UglSRv+Z2W/afTJLrboIgmnwThNYz7devYrutsmtSsjf/N2CJpaDdFZRt7XGncMO/4TCNK4NUZENDJd7gQiEPBnB13ztZA20FgjMjiuulryPJ78aJKi+jA4j7qp3zEAaW4WzAsv9rCTSYWAZoHE2Hvnh6Ox8c4zzn3VU+hifRcvAtKmAn/DxMn/m85X/3xMqNbNOk2qBZxF/AKnBwT37AQAA"
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1VQTUsDMRD9Ld6zo91S8dp6UBF02YIHLyXNTku62UzJJEoJ+e9mE8R6em8eb958tNA+wN2N/OZGDWNj9B7i1ks1iizt4jgxxFe8iMeDzZCElhPEngzOSsGOjFbF8MdeLHtpFXaODtpgEqjanIsqOO0vT47Cebb9F36brgPEB5kwFamyJHi5k8zoGdYz5Bo2QY3oN5JR5CSPqyXELuzzNs/EHodPsiXiqnrjHhW5oZxR2DZnrStNSfTIFFxdpv6jTMv0qO1xVt+DPwdf+6s3CUsDwolvvxb3sFjlv55Y68YF6/WE0Ff8ASJJB/hzAQAA"
    },
    "Metadata": {
     "aws:cdk:path": "DevAppStack/CDKMetadata/Default"
@@ -777,27 +439,6 @@
   }
  },
  "Outputs": {
-  "sheetadevvpcsheetadevsgid37668136": {
-   "Description": "The core vpc security group ID",
-   "Value": {
-    "Fn::GetAtt": [
-     "sheetadevvpcSG3234C151",
-     "GroupId"
-    ]
-   },
-   "Export": {
-    "Name": "core-vpc-sheeta-dev-sg-id"
-   }
-  },
-  "sheetadevvpcsheetadevvpcid48F46B30": {
-   "Description": "The core vpc ID",
-   "Value": {
-    "Ref": "sheetadevvpcbasevpcsheetadev630493EF"
-   },
-   "Export": {
-    "Name": "core-vpc-sheeta-dev-vpc-id"
-   }
-  },
   "projectzomboidserverIPAddresssheetaA1600F22": {
    "Value": {
     "Fn::GetAtt": [

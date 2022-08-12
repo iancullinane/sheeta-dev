@@ -23,7 +23,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::208744038881:role/cdk-hnb659fds-deploy-role-208744038881-us-east-2",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::208744038881:role/cdk-hnb659fds-cfn-exec-role-208744038881-us-east-2",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-208744038881-us-east-2/11ca95d4e3799a5c5845d0798a18c6158d62fc9ccc6947aeeb616be19a100b4e.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-208744038881-us-east-2/c19bceac8461c085cfab4a5c40814c44c4b208924217c92f55b67a45481997c1.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -57,112 +57,136 @@
             "data": "ec2RoleDefaultPolicyC400AE24"
           }
         ],
-        "/DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/Resource": [
+        "/DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "sheetadevvpcbasevpcsheetadev630493EF"
+            "data": "vpcbasevpcsheetadev4A543860"
           }
         ],
-        "/DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/Subnet": [
+        "/DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PublicSubnet1/Subnet": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "sheetadevvpcbasevpcsheetadevPublicSubnet1Subnet8F5DA99D"
+            "data": "vpcbasevpcsheetadevPublicSubnet1Subnet3E472964"
           }
         ],
-        "/DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/RouteTable": [
+        "/DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PublicSubnet1/RouteTable": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "sheetadevvpcbasevpcsheetadevPublicSubnet1RouteTable4B9A5BF1"
+            "data": "vpcbasevpcsheetadevPublicSubnet1RouteTableD545C138"
           }
         ],
-        "/DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/RouteTableAssociation": [
+        "/DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PublicSubnet1/RouteTableAssociation": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "sheetadevvpcbasevpcsheetadevPublicSubnet1RouteTableAssociation2433C504"
+            "data": "vpcbasevpcsheetadevPublicSubnet1RouteTableAssociation778E00DB"
           }
         ],
-        "/DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/DefaultRoute": [
+        "/DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PublicSubnet1/DefaultRoute": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "sheetadevvpcbasevpcsheetadevPublicSubnet1DefaultRouteD651E005"
+            "data": "vpcbasevpcsheetadevPublicSubnet1DefaultRoute7E861402"
           }
         ],
-        "/DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/NatInstance/InstanceProfile": [
+        "/DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PublicSubnet1/NatInstance/InstanceProfile": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "sheetadevvpcbasevpcsheetadevPublicSubnet1NatInstanceInstanceProfileA7588A7E"
+            "data": "vpcbasevpcsheetadevPublicSubnet1NatInstanceInstanceProfileA497E9CB"
           }
         ],
-        "/DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/NatInstance/Resource": [
+        "/DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PublicSubnet1/NatInstance/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "sheetadevvpcbasevpcsheetadevPublicSubnet1NatInstance4F876A6E"
+            "data": "vpcbasevpcsheetadevPublicSubnet1NatInstance569F398C"
           }
         ],
-        "/DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PrivateSubnet1/Subnet": [
+        "/DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PrivateSubnet1/Subnet": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "sheetadevvpcbasevpcsheetadevPrivateSubnet1SubnetA3060B6E"
+            "data": "vpcbasevpcsheetadevPrivateSubnet1Subnet192E0201"
           }
         ],
-        "/DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PrivateSubnet1/RouteTable": [
+        "/DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PrivateSubnet1/RouteTable": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "sheetadevvpcbasevpcsheetadevPrivateSubnet1RouteTable354522CE"
+            "data": "vpcbasevpcsheetadevPrivateSubnet1RouteTable446F00F2"
           }
         ],
-        "/DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PrivateSubnet1/RouteTableAssociation": [
+        "/DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PrivateSubnet1/RouteTableAssociation": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "sheetadevvpcbasevpcsheetadevPrivateSubnet1RouteTableAssociationE28F78D8"
+            "data": "vpcbasevpcsheetadevPrivateSubnet1RouteTableAssociation1901634D"
           }
         ],
-        "/DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PrivateSubnet1/DefaultRoute": [
+        "/DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PrivateSubnet1/DefaultRoute": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "sheetadevvpcbasevpcsheetadevPrivateSubnet1DefaultRoute52AB5B7F"
+            "data": "vpcbasevpcsheetadevPrivateSubnet1DefaultRoute91AA3F8B"
           }
         ],
-        "/DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/IGW": [
+        "/DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/IGW": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "sheetadevvpcbasevpcsheetadevIGW3244CA7E"
+            "data": "vpcbasevpcsheetadevIGW72CA169A"
           }
         ],
-        "/DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/VPCGW": [
+        "/DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/VPCGW": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "sheetadevvpcbasevpcsheetadevVPCGW64A5120C"
+            "data": "vpcbasevpcsheetadevVPCGW0A015CAA"
           }
         ],
-        "/DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/NatSecurityGroup/Resource": [
+        "/DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/NatSecurityGroup/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "sheetadevvpcbasevpcsheetadevNatSecurityGroupF92DCFC1"
+            "data": "vpcbasevpcsheetadevNatSecurityGroup2C3BC988"
           }
         ],
-        "/DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/NatRole/Resource": [
+        "/DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/NatRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "sheetadevvpcbasevpcsheetadevNatRole11C02F88"
+            "data": "vpcbasevpcsheetadevNatRole23AD5D43"
           }
         ],
-        "/DevAppStack/sheeta-dev-vpc/SG/Resource": [
+        "/DevAppStack/sheeta-dev-vpc/vpc/SG/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "sheetadevvpcSG3234C151"
+            "data": "vpcSGF05A997E"
           }
         ],
-        "/DevAppStack/sheeta-dev-vpc/sheeta-dev-sg-id": [
+        "/DevAppStack/sheeta-dev-vpc/vpc/sheeta-dev-sg-id": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "sheetadevvpcsheetadevsgid37668136"
+            "data": "vpcsheetadevsgid66560230"
           }
         ],
-        "/DevAppStack/sheeta-dev-vpc/sheeta-dev-vpc-id": [
+        "/DevAppStack/sheeta-dev-vpc/vpc/sheeta-dev-vpc-id": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "sheetadevvpcsheetadevvpcid48F46B30"
+            "data": "vpcsheetadevvpcidE7FBD770"
+          }
+        ],
+        "/DevAppStack/sheeta-dev-vpc/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/DevAppStack/sheeta-dev-vpc/DevAppStacksheetadevvpcbasevpcsheetadev923E1ADDRef": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DevAppStacksheetadevvpcbasevpcsheetadev923E1ADDRef"
+          }
+        ],
+        "/DevAppStack/sheeta-dev-vpc/DevAppStacksheetadevvpcbasevpcsheetadevPublicSubnet1SubnetB41FFE58Ref": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DevAppStacksheetadevvpcbasevpcsheetadevPublicSubnet1SubnetB41FFE58Ref"
+          }
+        ],
+        "/DevAppStack/sheeta-dev-vpc.NestedStack/sheeta-dev-vpc.NestedStackResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "sheetadevvpcNestedStacksheetadevvpcNestedStackResourceECF35E3A"
           }
         ],
         "/DevAppStack/project-zomboid-server/sg-id/Resource": [

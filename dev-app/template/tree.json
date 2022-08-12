@@ -231,95 +231,24 @@
             "id": "sheeta-dev-vpc",
             "path": "DevAppStack/sheeta-dev-vpc",
             "children": {
-              "base-vpc-sheeta-dev": {
-                "id": "base-vpc-sheeta-dev",
-                "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev",
+              "vpc": {
+                "id": "vpc",
+                "path": "DevAppStack/sheeta-dev-vpc/vpc",
                 "children": {
-                  "Resource": {
-                    "id": "Resource",
-                    "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/Resource",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::EC2::VPC",
-                      "aws:cdk:cloudformation:props": {
-                        "cidrBlock": "192.168.0.0/16",
-                        "enableDnsHostnames": true,
-                        "enableDnsSupport": true,
-                        "instanceTenancy": "default",
-                        "tags": [
-                          {
-                            "key": "Environment",
-                            "value": "dev"
-                          },
-                          {
-                            "key": "Name",
-                            "value": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev"
-                          }
-                        ]
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.CfnVPC",
-                      "version": "2.28.0"
-                    }
-                  },
-                  "PublicSubnet1": {
-                    "id": "PublicSubnet1",
-                    "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1",
+                  "base-vpc-sheeta-dev": {
+                    "id": "base-vpc-sheeta-dev",
+                    "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev",
                     "children": {
-                      "Subnet": {
-                        "id": "Subnet",
-                        "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/Subnet",
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/Resource",
                         "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                          "aws:cdk:cloudformation:type": "AWS::EC2::VPC",
                           "aws:cdk:cloudformation:props": {
-                            "vpcId": {
-                              "Ref": "sheetadevvpcbasevpcsheetadev630493EF"
-                            },
-                            "availabilityZone": "us-east-2a",
-                            "cidrBlock": "192.168.0.0/17",
-                            "mapPublicIpOnLaunch": true,
-                            "tags": [
-                              {
-                                "key": "aws-cdk:subnet-name",
-                                "value": "Public"
-                              },
-                              {
-                                "key": "aws-cdk:subnet-type",
-                                "value": "Public"
-                              },
-                              {
-                                "key": "Environment",
-                                "value": "dev"
-                              },
-                              {
-                                "key": "Name",
-                                "value": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1"
-                              }
-                            ]
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
-                          "version": "2.28.0"
-                        }
-                      },
-                      "Acl": {
-                        "id": "Acl",
-                        "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/Acl",
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.Resource",
-                          "version": "2.28.0"
-                        }
-                      },
-                      "RouteTable": {
-                        "id": "RouteTable",
-                        "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/RouteTable",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
-                          "aws:cdk:cloudformation:props": {
-                            "vpcId": {
-                              "Ref": "sheetadevvpcbasevpcsheetadev630493EF"
-                            },
+                            "cidrBlock": "192.168.0.0/16",
+                            "enableDnsHostnames": true,
+                            "enableDnsSupport": true,
+                            "instanceTenancy": "default",
                             "tags": [
                               {
                                 "key": "Environment",
@@ -327,100 +256,73 @@
                               },
                               {
                                 "key": "Name",
-                                "value": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1"
+                                "value": "sheeta-dev-base-vpc"
                               }
                             ]
                           }
                         },
                         "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnVPC",
                           "version": "2.28.0"
                         }
                       },
-                      "RouteTableAssociation": {
-                        "id": "RouteTableAssociation",
-                        "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/RouteTableAssociation",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
-                          "aws:cdk:cloudformation:props": {
-                            "routeTableId": {
-                              "Ref": "sheetadevvpcbasevpcsheetadevPublicSubnet1RouteTable4B9A5BF1"
-                            },
-                            "subnetId": {
-                              "Ref": "sheetadevvpcbasevpcsheetadevPublicSubnet1Subnet8F5DA99D"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
-                          "version": "2.28.0"
-                        }
-                      },
-                      "DefaultRoute": {
-                        "id": "DefaultRoute",
-                        "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/DefaultRoute",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::EC2::Route",
-                          "aws:cdk:cloudformation:props": {
-                            "routeTableId": {
-                              "Ref": "sheetadevvpcbasevpcsheetadevPublicSubnet1RouteTable4B9A5BF1"
-                            },
-                            "destinationCidrBlock": "0.0.0.0/0",
-                            "gatewayId": {
-                              "Ref": "sheetadevvpcbasevpcsheetadevIGW3244CA7E"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
-                          "version": "2.28.0"
-                        }
-                      },
-                      "NatInstance": {
-                        "id": "NatInstance",
-                        "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/NatInstance",
+                      "PublicSubnet1": {
+                        "id": "PublicSubnet1",
+                        "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PublicSubnet1",
                         "children": {
-                          "InstanceProfile": {
-                            "id": "InstanceProfile",
-                            "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/NatInstance/InstanceProfile",
+                          "Subnet": {
+                            "id": "Subnet",
+                            "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PublicSubnet1/Subnet",
                             "attributes": {
-                              "aws:cdk:cloudformation:type": "AWS::IAM::InstanceProfile",
+                              "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
                               "aws:cdk:cloudformation:props": {
-                                "roles": [
+                                "vpcId": {
+                                  "Ref": "vpcbasevpcsheetadev4A543860"
+                                },
+                                "availabilityZone": "us-east-2a",
+                                "cidrBlock": "192.168.0.0/17",
+                                "mapPublicIpOnLaunch": true,
+                                "tags": [
                                   {
-                                    "Ref": "sheetadevvpcbasevpcsheetadevNatRole11C02F88"
+                                    "key": "aws-cdk:subnet-name",
+                                    "value": "Public"
+                                  },
+                                  {
+                                    "key": "aws-cdk:subnet-type",
+                                    "value": "Public"
+                                  },
+                                  {
+                                    "key": "Environment",
+                                    "value": "dev"
+                                  },
+                                  {
+                                    "key": "Name",
+                                    "value": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PublicSubnet1"
                                   }
                                 ]
                               }
                             },
                             "constructInfo": {
-                              "fqn": "aws-cdk-lib.aws_iam.CfnInstanceProfile",
+                              "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
                               "version": "2.28.0"
                             }
                           },
-                          "Resource": {
-                            "id": "Resource",
-                            "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/NatInstance/Resource",
+                          "Acl": {
+                            "id": "Acl",
+                            "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PublicSubnet1/Acl",
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.Resource",
+                              "version": "2.28.0"
+                            }
+                          },
+                          "RouteTable": {
+                            "id": "RouteTable",
+                            "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PublicSubnet1/RouteTable",
                             "attributes": {
-                              "aws:cdk:cloudformation:type": "AWS::EC2::Instance",
+                              "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
                               "aws:cdk:cloudformation:props": {
-                                "availabilityZone": "us-east-2a",
-                                "iamInstanceProfile": {
-                                  "Ref": "sheetadevvpcbasevpcsheetadevPublicSubnet1NatInstanceInstanceProfileA7588A7E"
-                                },
-                                "imageId": "ami-076510d448bea6be7",
-                                "instanceType": "t2.micro",
-                                "securityGroupIds": [
-                                  {
-                                    "Fn::GetAtt": [
-                                      "sheetadevvpcbasevpcsheetadevNatSecurityGroupF92DCFC1",
-                                      "GroupId"
-                                    ]
-                                  }
-                                ],
-                                "sourceDestCheck": false,
-                                "subnetId": {
-                                  "Ref": "sheetadevvpcbasevpcsheetadevPublicSubnet1Subnet8F5DA99D"
+                                "vpcId": {
+                                  "Ref": "vpcbasevpcsheetadev4A543860"
                                 },
                                 "tags": [
                                   {
@@ -429,204 +331,408 @@
                                   },
                                   {
                                     "key": "Name",
-                                    "value": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PublicSubnet1/NatInstance"
+                                    "value": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PublicSubnet1"
                                   }
-                                ],
-                                "userData": {
-                                  "Fn::Base64": "#!/bin/bash"
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                              "version": "2.28.0"
+                            }
+                          },
+                          "RouteTableAssociation": {
+                            "id": "RouteTableAssociation",
+                            "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PublicSubnet1/RouteTableAssociation",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                              "aws:cdk:cloudformation:props": {
+                                "routeTableId": {
+                                  "Ref": "vpcbasevpcsheetadevPublicSubnet1RouteTableD545C138"
+                                },
+                                "subnetId": {
+                                  "Ref": "vpcbasevpcsheetadevPublicSubnet1Subnet3E472964"
                                 }
                               }
                             },
                             "constructInfo": {
-                              "fqn": "aws-cdk-lib.aws_ec2.CfnInstance",
+                              "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                              "version": "2.28.0"
+                            }
+                          },
+                          "DefaultRoute": {
+                            "id": "DefaultRoute",
+                            "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PublicSubnet1/DefaultRoute",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                              "aws:cdk:cloudformation:props": {
+                                "routeTableId": {
+                                  "Ref": "vpcbasevpcsheetadevPublicSubnet1RouteTableD545C138"
+                                },
+                                "destinationCidrBlock": "0.0.0.0/0",
+                                "gatewayId": {
+                                  "Ref": "vpcbasevpcsheetadevIGW72CA169A"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
+                              "version": "2.28.0"
+                            }
+                          },
+                          "NatInstance": {
+                            "id": "NatInstance",
+                            "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PublicSubnet1/NatInstance",
+                            "children": {
+                              "InstanceProfile": {
+                                "id": "InstanceProfile",
+                                "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PublicSubnet1/NatInstance/InstanceProfile",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::IAM::InstanceProfile",
+                                  "aws:cdk:cloudformation:props": {
+                                    "roles": [
+                                      {
+                                        "Ref": "vpcbasevpcsheetadevNatRole23AD5D43"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_iam.CfnInstanceProfile",
+                                  "version": "2.28.0"
+                                }
+                              },
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PublicSubnet1/NatInstance/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::EC2::Instance",
+                                  "aws:cdk:cloudformation:props": {
+                                    "availabilityZone": "us-east-2a",
+                                    "iamInstanceProfile": {
+                                      "Ref": "vpcbasevpcsheetadevPublicSubnet1NatInstanceInstanceProfileA497E9CB"
+                                    },
+                                    "imageId": "ami-076510d448bea6be7",
+                                    "instanceType": "t2.micro",
+                                    "securityGroupIds": [
+                                      {
+                                        "Fn::GetAtt": [
+                                          "vpcbasevpcsheetadevNatSecurityGroup2C3BC988",
+                                          "GroupId"
+                                        ]
+                                      }
+                                    ],
+                                    "sourceDestCheck": false,
+                                    "subnetId": {
+                                      "Ref": "vpcbasevpcsheetadevPublicSubnet1Subnet3E472964"
+                                    },
+                                    "tags": [
+                                      {
+                                        "key": "Environment",
+                                        "value": "dev"
+                                      },
+                                      {
+                                        "key": "Name",
+                                        "value": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PublicSubnet1/NatInstance"
+                                      }
+                                    ],
+                                    "userData": {
+                                      "Fn::Base64": "#!/bin/bash"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_ec2.CfnInstance",
+                                  "version": "2.28.0"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_ec2.Instance",
                               "version": "2.28.0"
                             }
                           }
                         },
                         "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.Instance",
+                          "fqn": "aws-cdk-lib.aws_ec2.PublicSubnet",
                           "version": "2.28.0"
                         }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.PublicSubnet",
-                      "version": "2.28.0"
-                    }
-                  },
-                  "PrivateSubnet1": {
-                    "id": "PrivateSubnet1",
-                    "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PrivateSubnet1",
-                    "children": {
-                      "Subnet": {
-                        "id": "Subnet",
-                        "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PrivateSubnet1/Subnet",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
-                          "aws:cdk:cloudformation:props": {
-                            "vpcId": {
-                              "Ref": "sheetadevvpcbasevpcsheetadev630493EF"
-                            },
-                            "availabilityZone": "us-east-2a",
-                            "cidrBlock": "192.168.128.0/17",
-                            "mapPublicIpOnLaunch": false,
-                            "tags": [
-                              {
-                                "key": "aws-cdk:subnet-name",
-                                "value": "Private"
-                              },
-                              {
-                                "key": "aws-cdk:subnet-type",
-                                "value": "Private"
-                              },
-                              {
-                                "key": "Environment",
-                                "value": "dev"
-                              },
-                              {
-                                "key": "Name",
-                                "value": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PrivateSubnet1"
+                      },
+                      "PrivateSubnet1": {
+                        "id": "PrivateSubnet1",
+                        "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PrivateSubnet1",
+                        "children": {
+                          "Subnet": {
+                            "id": "Subnet",
+                            "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PrivateSubnet1/Subnet",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                              "aws:cdk:cloudformation:props": {
+                                "vpcId": {
+                                  "Ref": "vpcbasevpcsheetadev4A543860"
+                                },
+                                "availabilityZone": "us-east-2a",
+                                "cidrBlock": "192.168.128.0/17",
+                                "mapPublicIpOnLaunch": false,
+                                "tags": [
+                                  {
+                                    "key": "aws-cdk:subnet-name",
+                                    "value": "Private"
+                                  },
+                                  {
+                                    "key": "aws-cdk:subnet-type",
+                                    "value": "Private"
+                                  },
+                                  {
+                                    "key": "Environment",
+                                    "value": "dev"
+                                  },
+                                  {
+                                    "key": "Name",
+                                    "value": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PrivateSubnet1"
+                                  }
+                                ]
                               }
-                            ]
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
-                          "version": "2.28.0"
-                        }
-                      },
-                      "Acl": {
-                        "id": "Acl",
-                        "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PrivateSubnet1/Acl",
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.Resource",
-                          "version": "2.28.0"
-                        }
-                      },
-                      "RouteTable": {
-                        "id": "RouteTable",
-                        "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PrivateSubnet1/RouteTable",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
-                          "aws:cdk:cloudformation:props": {
-                            "vpcId": {
-                              "Ref": "sheetadevvpcbasevpcsheetadev630493EF"
                             },
-                            "tags": [
-                              {
-                                "key": "Environment",
-                                "value": "dev"
-                              },
-                              {
-                                "key": "Name",
-                                "value": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PrivateSubnet1"
-                              }
-                            ]
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
-                          "version": "2.28.0"
-                        }
-                      },
-                      "RouteTableAssociation": {
-                        "id": "RouteTableAssociation",
-                        "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PrivateSubnet1/RouteTableAssociation",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
-                          "aws:cdk:cloudformation:props": {
-                            "routeTableId": {
-                              "Ref": "sheetadevvpcbasevpcsheetadevPrivateSubnet1RouteTable354522CE"
-                            },
-                            "subnetId": {
-                              "Ref": "sheetadevvpcbasevpcsheetadevPrivateSubnet1SubnetA3060B6E"
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                              "version": "2.28.0"
                             }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
-                          "version": "2.28.0"
-                        }
-                      },
-                      "DefaultRoute": {
-                        "id": "DefaultRoute",
-                        "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/PrivateSubnet1/DefaultRoute",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::EC2::Route",
-                          "aws:cdk:cloudformation:props": {
-                            "routeTableId": {
-                              "Ref": "sheetadevvpcbasevpcsheetadevPrivateSubnet1RouteTable354522CE"
-                            },
-                            "destinationCidrBlock": "0.0.0.0/0",
-                            "instanceId": {
-                              "Ref": "sheetadevvpcbasevpcsheetadevPublicSubnet1NatInstance4F876A6E"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
-                          "version": "2.28.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.PrivateSubnet",
-                      "version": "2.28.0"
-                    }
-                  },
-                  "IGW": {
-                    "id": "IGW",
-                    "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/IGW",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::EC2::InternetGateway",
-                      "aws:cdk:cloudformation:props": {
-                        "tags": [
-                          {
-                            "key": "Environment",
-                            "value": "dev"
                           },
-                          {
-                            "key": "Name",
-                            "value": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev"
+                          "Acl": {
+                            "id": "Acl",
+                            "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PrivateSubnet1/Acl",
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.Resource",
+                              "version": "2.28.0"
+                            }
+                          },
+                          "RouteTable": {
+                            "id": "RouteTable",
+                            "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PrivateSubnet1/RouteTable",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                              "aws:cdk:cloudformation:props": {
+                                "vpcId": {
+                                  "Ref": "vpcbasevpcsheetadev4A543860"
+                                },
+                                "tags": [
+                                  {
+                                    "key": "Environment",
+                                    "value": "dev"
+                                  },
+                                  {
+                                    "key": "Name",
+                                    "value": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PrivateSubnet1"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                              "version": "2.28.0"
+                            }
+                          },
+                          "RouteTableAssociation": {
+                            "id": "RouteTableAssociation",
+                            "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PrivateSubnet1/RouteTableAssociation",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                              "aws:cdk:cloudformation:props": {
+                                "routeTableId": {
+                                  "Ref": "vpcbasevpcsheetadevPrivateSubnet1RouteTable446F00F2"
+                                },
+                                "subnetId": {
+                                  "Ref": "vpcbasevpcsheetadevPrivateSubnet1Subnet192E0201"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                              "version": "2.28.0"
+                            }
+                          },
+                          "DefaultRoute": {
+                            "id": "DefaultRoute",
+                            "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/PrivateSubnet1/DefaultRoute",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                              "aws:cdk:cloudformation:props": {
+                                "routeTableId": {
+                                  "Ref": "vpcbasevpcsheetadevPrivateSubnet1RouteTable446F00F2"
+                                },
+                                "destinationCidrBlock": "0.0.0.0/0",
+                                "instanceId": {
+                                  "Ref": "vpcbasevpcsheetadevPublicSubnet1NatInstance569F398C"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
+                              "version": "2.28.0"
+                            }
                           }
-                        ]
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.CfnInternetGateway",
-                      "version": "2.28.0"
-                    }
-                  },
-                  "VPCGW": {
-                    "id": "VPCGW",
-                    "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/VPCGW",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::EC2::VPCGatewayAttachment",
-                      "aws:cdk:cloudformation:props": {
-                        "vpcId": {
-                          "Ref": "sheetadevvpcbasevpcsheetadev630493EF"
                         },
-                        "internetGatewayId": {
-                          "Ref": "sheetadevvpcbasevpcsheetadevIGW3244CA7E"
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.PrivateSubnet",
+                          "version": "2.28.0"
+                        }
+                      },
+                      "IGW": {
+                        "id": "IGW",
+                        "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/IGW",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::InternetGateway",
+                          "aws:cdk:cloudformation:props": {
+                            "tags": [
+                              {
+                                "key": "Environment",
+                                "value": "dev"
+                              },
+                              {
+                                "key": "Name",
+                                "value": "sheeta-dev-base-vpc"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnInternetGateway",
+                          "version": "2.28.0"
+                        }
+                      },
+                      "VPCGW": {
+                        "id": "VPCGW",
+                        "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/VPCGW",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::VPCGatewayAttachment",
+                          "aws:cdk:cloudformation:props": {
+                            "vpcId": {
+                              "Ref": "vpcbasevpcsheetadev4A543860"
+                            },
+                            "internetGatewayId": {
+                              "Ref": "vpcbasevpcsheetadevIGW72CA169A"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnVPCGatewayAttachment",
+                          "version": "2.28.0"
+                        }
+                      },
+                      "NatSecurityGroup": {
+                        "id": "NatSecurityGroup",
+                        "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/NatSecurityGroup",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/NatSecurityGroup/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                              "aws:cdk:cloudformation:props": {
+                                "groupDescription": "Security Group for NAT instances",
+                                "securityGroupEgress": [
+                                  {
+                                    "cidrIp": "0.0.0.0/0",
+                                    "description": "Allow all outbound traffic by default",
+                                    "ipProtocol": "-1"
+                                  }
+                                ],
+                                "securityGroupIngress": [
+                                  {
+                                    "cidrIp": "0.0.0.0/0",
+                                    "ipProtocol": "-1",
+                                    "description": "from 0.0.0.0/0:ALL TRAFFIC"
+                                  }
+                                ],
+                                "tags": [
+                                  {
+                                    "key": "Environment",
+                                    "value": "dev"
+                                  },
+                                  {
+                                    "key": "Name",
+                                    "value": "sheeta-dev-base-vpc"
+                                  }
+                                ],
+                                "vpcId": {
+                                  "Ref": "vpcbasevpcsheetadev4A543860"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                              "version": "2.28.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+                          "version": "2.28.0"
+                        }
+                      },
+                      "NatRole": {
+                        "id": "NatRole",
+                        "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/NatRole",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "DevAppStack/sheeta-dev-vpc/vpc/base-vpc-sheeta-dev/NatRole/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                              "aws:cdk:cloudformation:props": {
+                                "assumeRolePolicyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": "sts:AssumeRole",
+                                      "Effect": "Allow",
+                                      "Principal": {
+                                        "Service": "ec2.amazonaws.com"
+                                      }
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                },
+                                "tags": [
+                                  {
+                                    "key": "Environment",
+                                    "value": "dev"
+                                  },
+                                  {
+                                    "key": "Name",
+                                    "value": "sheeta-dev-base-vpc"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                              "version": "2.28.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.Role",
+                          "version": "2.28.0"
                         }
                       }
                     },
                     "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.CfnVPCGatewayAttachment",
+                      "fqn": "aws-cdk-lib.aws_ec2.Vpc",
                       "version": "2.28.0"
                     }
                   },
-                  "NatSecurityGroup": {
-                    "id": "NatSecurityGroup",
-                    "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/NatSecurityGroup",
+                  "SG": {
+                    "id": "SG",
+                    "path": "DevAppStack/sheeta-dev-vpc/vpc/SG",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/NatSecurityGroup/Resource",
+                        "path": "DevAppStack/sheeta-dev-vpc/vpc/SG/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
                           "aws:cdk:cloudformation:props": {
-                            "groupDescription": "Security Group for NAT instances",
+                            "groupDescription": "DevAppStack/sheeta-dev-vpc/vpc/SG",
                             "securityGroupEgress": [
                               {
                                 "cidrIp": "0.0.0.0/0",
@@ -634,25 +740,8 @@
                                 "ipProtocol": "-1"
                               }
                             ],
-                            "securityGroupIngress": [
-                              {
-                                "cidrIp": "0.0.0.0/0",
-                                "ipProtocol": "-1",
-                                "description": "from 0.0.0.0/0:ALL TRAFFIC"
-                              }
-                            ],
-                            "tags": [
-                              {
-                                "key": "Environment",
-                                "value": "dev"
-                              },
-                              {
-                                "key": "Name",
-                                "value": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev"
-                              }
-                            ],
                             "vpcId": {
-                              "Ref": "sheetadevvpcbasevpcsheetadev630493EF"
+                              "Ref": "vpcbasevpcsheetadev4A543860"
                             }
                           }
                         },
@@ -667,114 +756,94 @@
                       "version": "2.28.0"
                     }
                   },
-                  "NatRole": {
-                    "id": "NatRole",
-                    "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/NatRole",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev/NatRole/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
-                          "aws:cdk:cloudformation:props": {
-                            "assumeRolePolicyDocument": {
-                              "Statement": [
-                                {
-                                  "Action": "sts:AssumeRole",
-                                  "Effect": "Allow",
-                                  "Principal": {
-                                    "Service": "ec2.amazonaws.com"
-                                  }
-                                }
-                              ],
-                              "Version": "2012-10-17"
-                            },
-                            "tags": [
-                              {
-                                "key": "Environment",
-                                "value": "dev"
-                              },
-                              {
-                                "key": "Name",
-                                "value": "DevAppStack/sheeta-dev-vpc/base-vpc-sheeta-dev"
-                              }
-                            ]
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_iam.CfnRole",
-                          "version": "2.28.0"
-                        }
-                      }
-                    },
+                  "sheeta-dev-sg-id": {
+                    "id": "sheeta-dev-sg-id",
+                    "path": "DevAppStack/sheeta-dev-vpc/vpc/sheeta-dev-sg-id",
                     "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_iam.Role",
+                      "fqn": "aws-cdk-lib.CfnOutput",
+                      "version": "2.28.0"
+                    }
+                  },
+                  "sheeta-dev-vpc-id": {
+                    "id": "sheeta-dev-vpc-id",
+                    "path": "DevAppStack/sheeta-dev-vpc/vpc/sheeta-dev-vpc-id",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CfnOutput",
                       "version": "2.28.0"
                     }
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_ec2.Vpc",
-                  "version": "2.28.0"
+                  "fqn": "constructs.Construct",
+                  "version": "10.1.48"
                 }
               },
-              "SG": {
-                "id": "SG",
-                "path": "DevAppStack/sheeta-dev-vpc/SG",
+              "CDKMetadata": {
+                "id": "CDKMetadata",
+                "path": "DevAppStack/sheeta-dev-vpc/CDKMetadata",
                 "children": {
-                  "Resource": {
-                    "id": "Resource",
-                    "path": "DevAppStack/sheeta-dev-vpc/SG/Resource",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
-                      "aws:cdk:cloudformation:props": {
-                        "groupDescription": "DevAppStack/sheeta-dev-vpc/SG",
-                        "securityGroupEgress": [
-                          {
-                            "cidrIp": "0.0.0.0/0",
-                            "description": "Allow all outbound traffic by default",
-                            "ipProtocol": "-1"
-                          }
-                        ],
-                        "tags": [
-                          {
-                            "key": "Environment",
-                            "value": "dev"
-                          },
-                          {
-                            "key": "Name",
-                            "value": "sheeta-dev-base-vpc"
-                          }
-                        ],
-                        "vpcId": {
-                          "Ref": "sheetadevvpcbasevpcsheetadev630493EF"
-                        }
-                      }
-                    },
+                  "Default": {
+                    "id": "Default",
+                    "path": "DevAppStack/sheeta-dev-vpc/CDKMetadata/Default",
                     "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                      "fqn": "aws-cdk-lib.CfnResource",
                       "version": "2.28.0"
                     }
                   }
                 },
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
-                  "version": "2.28.0"
+                  "fqn": "constructs.Construct",
+                  "version": "10.1.48"
                 }
               },
-              "sheeta-dev-sg-id": {
-                "id": "sheeta-dev-sg-id",
-                "path": "DevAppStack/sheeta-dev-vpc/sheeta-dev-sg-id",
+              "DevAppStacksheetadevvpcbasevpcsheetadev923E1ADDRef": {
+                "id": "DevAppStacksheetadevvpcbasevpcsheetadev923E1ADDRef",
+                "path": "DevAppStack/sheeta-dev-vpc/DevAppStacksheetadevvpcbasevpcsheetadev923E1ADDRef",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnOutput",
                   "version": "2.28.0"
                 }
               },
-              "sheeta-dev-vpc-id": {
-                "id": "sheeta-dev-vpc-id",
-                "path": "DevAppStack/sheeta-dev-vpc/sheeta-dev-vpc-id",
+              "DevAppStacksheetadevvpcbasevpcsheetadevPublicSubnet1SubnetB41FFE58Ref": {
+                "id": "DevAppStacksheetadevvpcbasevpcsheetadevPublicSubnet1SubnetB41FFE58Ref",
+                "path": "DevAppStack/sheeta-dev-vpc/DevAppStacksheetadevvpcbasevpcsheetadevPublicSubnet1SubnetB41FFE58Ref",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.28.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.NestedStack",
+              "version": "2.28.0"
+            }
+          },
+          "sheeta-dev-vpc.NestedStack": {
+            "id": "sheeta-dev-vpc.NestedStack",
+            "path": "DevAppStack/sheeta-dev-vpc.NestedStack",
+            "children": {
+              "sheeta-dev-vpc.NestedStackResource": {
+                "id": "sheeta-dev-vpc.NestedStackResource",
+                "path": "DevAppStack/sheeta-dev-vpc.NestedStack/sheeta-dev-vpc.NestedStackResource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudFormation::Stack",
+                  "aws:cdk:cloudformation:props": {
+                    "templateUrl": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "https://s3.us-east-2.",
+                          {
+                            "Ref": "AWS::URLSuffix"
+                          },
+                          "/cdk-hnb659fds-assets-208744038881-us-east-2/61668902f3935ffbabd4e3c2488eb5c20829fb8e5354829cd10eb7bb7c7a1116.json"
+                        ]
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnStack",
                   "version": "2.28.0"
                 }
               }
@@ -807,7 +876,10 @@
                           }
                         ],
                         "vpcId": {
-                          "Ref": "sheetadevvpcbasevpcsheetadev630493EF"
+                          "Fn::GetAtt": [
+                            "sheetadevvpcNestedStacksheetadevvpcNestedStackResourceECF35E3A",
+                            "Outputs.DevAppStacksheetadevvpcbasevpcsheetadev923E1ADDRef"
+                          ]
                         }
                       }
                     },
@@ -872,7 +944,10 @@
                           }
                         ],
                         "subnetId": {
-                          "Ref": "sheetadevvpcbasevpcsheetadevPublicSubnet1Subnet8F5DA99D"
+                          "Fn::GetAtt": [
+                            "sheetadevvpcNestedStacksheetadevvpcNestedStackResourceECF35E3A",
+                            "Outputs.DevAppStacksheetadevvpcbasevpcsheetadevPublicSubnet1SubnetB41FFE58Ref"
+                          ]
                         },
                         "tags": [
                           {
@@ -903,7 +978,7 @@
                                         {
                                           "Ref": "projectzomboidserversheetavol5987B3C5"
                                         },
-                                        " --instance-id $INSTANCE_ID --device /dev/xvdf\nwhile ! test -e /dev/xvdf; do sleep 1; done\nmkfs -t xfs /dev/xvdf\nmkdir /mnt/sheeta\nmount /dev/xvdf /mnt/sheeta\necho \"UUID=$(lsblk -o +UUID | grep thepain | awk '{print $8}') /mnt/sheeta  xfs  defaults,nofail  0  2\" >> /etc/fstab\necho \"---- Add users\"\nsudo usermod -aG docker ubuntu\nsudo usermod -aG docker steam\necho \"---- Install PZ\"\nmkdir /mnt/sheeta\ndocker run -v /mnt/sheeta:/data steamcmd/steamcmd:ubuntu-18         +login anonymous         +force_install_dir /data         +app_update 380870 validate         +quit\nmkdir -p $(dirname '/mnt/sheeta/files/')\naws s3 cp 's3://cdk-hnb659fds-assets-208744038881-us-east-2/98c615ce1e1149254eb3293232ea38c68eae1695f7fa07cc380f2eb355f06f94.zip' '/mnt/sheeta/files/'\nmkdir -p $(dirname '/mnt/sheeta/files/')\naws s3 cp 's3://cdk-hnb659fds-assets-208744038881-us-east-2/a3e1442c916b889a1057967a4e3b63041869c933e8548e9a6ae680d6c8bb2ae4.zip' '/mnt/sheeta/files/'\nmkdir -p /mnt/sheeta/Server/\nunzip /mnt/sheeta/files/98c615ce1e1149254eb3293232ea38c68eae1695f7fa07cc380f2eb355f06f94.zip -d /mnt/sheeta/Server/\nunzip /mnt/sheeta/files/a3e1442c916b889a1057967a4e3b63041869c933e8548e9a6ae680d6c8bb2ae4.zip -d /etc/systemd/system/\nchmod +x /etc/systemd/system/sheeta.service\nsystemctl enable sheeta_service.service\nsystemctl start sheeta_service.service"
+                                        " --instance-id $INSTANCE_ID --device /dev/xvdf\nwhile ! test -e /dev/xvdf; do sleep 1; done\nmkfs -t xfs /dev/xvdf\nmkdir /mnt/sheeta\nmount /dev/xvdf /mnt/sheeta\necho \"UUID=$(lsblk -o +UUID | grep thepain | awk '{print $8}') /mnt/sheeta  xfs  defaults,nofail  0  2\" >> /etc/fstab\necho \"---- Add users\"\nsudo usermod -aG docker ubuntu\nsudo usermod -aG docker steam\necho \"---- Install PZ\"\nmkdir /mnt/sheeta\ndocker run -v /mnt/sheeta:/data steamcmd/steamcmd:ubuntu-18         +login anonymous         +force_install_dir /data         +app_update 380870 validate         +quit\nmkdir -p $(dirname '/mnt/sheeta/files/')\naws s3 cp 's3://cdk-hnb659fds-assets-208744038881-us-east-2/9cf8071398f381ec20504a3e2efb9bd5060f49d4278a8f32430112ea2e3fc534.zip' '/mnt/sheeta/files/'\nmkdir -p $(dirname '/mnt/sheeta/files/')\naws s3 cp 's3://cdk-hnb659fds-assets-208744038881-us-east-2/a3e1442c916b889a1057967a4e3b63041869c933e8548e9a6ae680d6c8bb2ae4.zip' '/mnt/sheeta/files/'\nmkdir -p /mnt/sheeta/Server/\nunzip /mnt/sheeta/files/9cf8071398f381ec20504a3e2efb9bd5060f49d4278a8f32430112ea2e3fc534.zip -d /mnt/sheeta/Server/\nunzip /mnt/sheeta/files/a3e1442c916b889a1057967a4e3b63041869c933e8548e9a6ae680d6c8bb2ae4.zip -d /etc/systemd/system/\nchmod +x /etc/systemd/system/sheeta.service\nsystemctl enable sheeta_service.service\nsystemctl start sheeta_service.service"
                                       ]
                                     ]
                                   }
@@ -1068,7 +1143,10 @@
                           }
                         ],
                         "vpcId": {
-                          "Ref": "sheetadevvpcbasevpcsheetadev630493EF"
+                          "Fn::GetAtt": [
+                            "sheetadevvpcNestedStacksheetadevvpcNestedStackResourceECF35E3A",
+                            "Outputs.DevAppStacksheetadevvpcbasevpcsheetadev923E1ADDRef"
+                          ]
                         }
                       }
                     },

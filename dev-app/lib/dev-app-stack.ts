@@ -1,11 +1,15 @@
 import { Stack, StackProps, Tags, Fn } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { SimpleVpc } from '@ianpants/pants-constructs';
 import { GameServerStack } from '@ianpants/project-zomboid-server';
+import { VpcBaseStack } from './nested/vpc';
 
 import * as kms from 'aws-cdk-lib/aws-kms';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as r53 from 'aws-cdk-lib/aws-route53';
+import * as ec2 from "aws-cdk-lib/aws-ec2";
+import * as asg from "aws-cdk-lib/aws-autoscaling";
+
+import * as fs from 'fs';
 
 export interface AppProps extends StackProps {
   project_name: string;
@@ -39,31 +43,52 @@ export class DevAppStack extends Stack {
       zoneName: props.tld,
     });
 
-    // The code that defines your stack goes here
-    let dev_vpc = new SimpleVpc(this, `${props.project_name}-vpc`, {
-      project_name: props.project_name,
+    const vpc = new VpcBaseStack(this, `${props.project_name}-vpc`, { name: props.project_name })
+
+    // new GameServerStack(this, 'project-zomboid-server', {
+    //   infra: {
+    //     region: props.region,
+    //     vpc: vpc.vpc,
+    //     key: encryptionKey,
+    //     role: role,
+    //     keyPair: "pz-sheeta-key",
+    //     hz: hz,
+    //     instancetype: "t2.medium", // prop
+    //   },
+    //   game: {
+    //     distdir: "/mnt/sheeta",
+    //     servername: "sheeta",
+    //     public: true,
+    //     modFile: fs.readFileSync(`assets/mods.txt`),
+    //   }
+    // })
+
+    const userData = new ec2.MultipartUserData;
+    const setupCommands = ec2.UserData.forLinux();
+    setupCommands.addCommands(
+      `echo "---- Install deps"`,
+      `sudo add-apt-repository multiverse`,
+      `sudo dpkg --add-architecture i386`,
+      `sudo apt update`,
+      `sudo apt install -y lib32gcc1 libsdl2-2.0-0:i386 docker.io awscli unzip`
+    );
+
+    let serverTemplate = new ec2.LaunchTemplate(this, 'game-template', {
+      userData: userData,
     });
-    Tags.of(dev_vpc).add('Name', `${props.project_name}-base-vpc`);
-    Tags.of(dev_vpc).add('Environment', `dev`);
 
+    // https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ec2.LaunchTemplate.html
 
-
-    new GameServerStack(this, 'project-zomboid-server', {
-      infra: {
-        region: props.region,
-        vpc: dev_vpc.vpc,
-        key: encryptionKey,
-        role: role,
-        keyPair: "pz-sheeta-key",
-        hz: hz,
-        instancetype: "t2.medium", // prop
-      },
-      game: {
-        distdir: "/mnt/sheeta",
-        servername: "sheeta",
-        public: true,
-      }
-    })
+    const mySecurityGroup = new ec2.SecurityGroup(this, 'AsgSecurityGroup', { vpc: vpc.vpc });
+    new asg.AutoScalingGroup(this, 'ASG', {
+      vpc: vpc.vpc,
+      instanceType: ec2.InstanceType.of(ec2.InstanceClass.BURSTABLE2, ec2.InstanceSize.SMALL),
+      launchTemplate: serverTemplate,
+      machineImage: new ec2.AmazonLinuxImage(),
+      securityGroup: mySecurityGroup,
+      maxCapacity: 1,
+      minCapacity: 1,
+    });
   }
 }
 //  let infra = {
