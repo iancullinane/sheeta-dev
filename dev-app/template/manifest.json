@@ -23,7 +23,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::208744038881:role/cdk-hnb659fds-deploy-role-208744038881-us-east-2",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::208744038881:role/cdk-hnb659fds-cfn-exec-role-208744038881-us-east-2",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-208744038881-us-east-2/c19bceac8461c085cfab4a5c40814c44c4b208924217c92f55b67a45481997c1.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-208744038881-us-east-2/dd6578b322a77a83e76b794cac66ce28e7601414ba2f8852ae867d2b3d41e282.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -39,12 +39,6 @@
         "DevAppStack.assets"
       ],
       "metadata": {
-        "/DevAppStack/Key/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "Key961B73FD"
-          }
-        ],
         "/DevAppStack/ec2Role/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -177,10 +171,10 @@
             "data": "DevAppStacksheetadevvpcbasevpcsheetadev923E1ADDRef"
           }
         ],
-        "/DevAppStack/sheeta-dev-vpc/DevAppStacksheetadevvpcbasevpcsheetadevPublicSubnet1SubnetB41FFE58Ref": [
+        "/DevAppStack/sheeta-dev-vpc/DevAppStacksheetadevvpcbasevpcsheetadevPrivateSubnet1Subnet9CB43A3ERef": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DevAppStacksheetadevvpcbasevpcsheetadevPublicSubnet1SubnetB41FFE58Ref"
+            "data": "DevAppStacksheetadevvpcbasevpcsheetadevPrivateSubnet1Subnet9CB43A3ERef"
           }
         ],
         "/DevAppStack/sheeta-dev-vpc.NestedStack/sheeta-dev-vpc.NestedStackResource": [
@@ -189,58 +183,28 @@
             "data": "sheetadevvpcNestedStacksheetadevvpcNestedStackResourceECF35E3A"
           }
         ],
-        "/DevAppStack/project-zomboid-server/sg-id/Resource": [
+        "/DevAppStack/AsgSecurityGroup/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "projectzomboidserversgidDC54B61C"
+            "data": "AsgSecurityGroupABD137B7"
           }
         ],
-        "/DevAppStack/project-zomboid-server/project-zomboid-ec2/InstanceProfile": [
+        "/DevAppStack/game-template/Profile": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "projectzomboidserverprojectzomboidec2InstanceProfile45E503A8"
+            "data": "gametemplateProfileC8A90268"
           }
         ],
-        "/DevAppStack/project-zomboid-server/project-zomboid-ec2/Resource": [
+        "/DevAppStack/game-template/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "projectzomboidserverprojectzomboidec2D0EEFD9E"
+            "data": "gametemplateDD3E8F47"
           }
         ],
-        "/DevAppStack/project-zomboid-server/sheeta-vol/Resource": [
+        "/DevAppStack/ASG/ASG": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "projectzomboidserversheetavol5987B3C5"
-          }
-        ],
-        "/DevAppStack/project-zomboid-server/zomboid-server-port-reqs/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "projectzomboidserverzomboidserverportreqs0246C66B"
-          }
-        ],
-        "/DevAppStack/project-zomboid-server/HostedZoneDev/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "projectzomboidserverHostedZoneDev9DC2B41E"
-          }
-        ],
-        "/DevAppStack/project-zomboid-server/NsForParentDomain/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "projectzomboidserverNsForParentDomain3B986BC6"
-          }
-        ],
-        "/DevAppStack/project-zomboid-server/PzARecordB-sheeta/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "projectzomboidserverPzARecordBsheeta64964A99"
-          }
-        ],
-        "/DevAppStack/project-zomboid-server/IPAddress-sheeta": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "projectzomboidserverIPAddresssheetaA1600F22"
+            "data": "ASG46ED3070"
           }
         ],
         "/DevAppStack/CDKMetadata/Default": [
