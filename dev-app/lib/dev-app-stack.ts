@@ -56,27 +56,6 @@ export class DevAppStack extends Stack {
 
 
     const vpc = new VpcBaseStack(this, `${props.project_name}-vpc`, { name: props.project_name })
-    // new GameServerStack(this, 'project-zomboid-server', {
-    //   infra: {
-    //     region: props.region,
-    //     vpc: vpc.vpc,
-    //     key: encryptionKey,
-    //     role: role,
-    //     keyPair: "pz-sheeta-key",
-    //     hz: hz,
-    //     instancetype: "t2.medium", // prop
-    //   },
-    //   game: {
-    //     distdir: "/mnt/sheeta",
-    //     servername: "sheeta",
-    //     public: true,
-    //     modFile: fs.readFileSync(`assets/mods.txt`),
-    //   }
-    // })
-
-
-    // 
-    // 
 
     // const userData = new ec2.MultipartUserData;
     const setupCommands = ec2.UserData.forLinux();
@@ -92,45 +71,6 @@ export class DevAppStack extends Stack {
       // `aws s3 cp ${props.cloudInitUrl}/ /etc/systemd/system/ --recursive`
     );
 
-    // let addUsers: string[] = [
-    //   `echo "---- Add users"`,
-    //   `sudo usermod -aG docker ubuntu`,
-    //   `sudo usermod -aG docker steam`
-    // ];
-    // let installCommands: string[] = [
-    //   `echo "---- Install PZ"`,
-    //   // `mkdir /mnt/${cfg.servername}`,
-    //   // `docker run -v /mnt/${cfg.servername}:/data steamcmd/steamcmd:ubuntu-18 \
-    //   //   +login anonymous \
-    //   //   +force_install_dir /data \
-    //   //   +app_update 380870 validate \
-    //   //   +quit`
-    // ]
-
-    // userData.addCommands(...updateDebian);
-    // setupCommands.addCommands(...addUsers);
-    // setupCommands.addCommands(...installCommands);
-
-    const asset = new Asset(this, 'Asset', {
-      path: './lib/userdata'
-    });
-
-    //     // 👇 load user data script
-    // const userDataScript = fs.readFileSync('./lib/user-data.sh', 'utf8');
-
-    // // 👇 add user data to the EC2 instance
-    // ec2Instance.addUserData(userDataScript);
-
-    let userdata = setupCommands.addS3DownloadCommand({
-      bucket: asset.bucket,
-      bucketKey: asset.s3ObjectKey,
-    });
-    setupCommands.addExecuteFileCommand({
-      filePath: userdata,
-      arguments: '--verbose -y'
-    });
-    asset.grantRead(role);
-
     setupCommands.addCommands(
       `docker run -d --rm -p 8500:8500 -p 8600:8600/udp --name=-test-one consul agent -server -ui -node=server-1 -bootstrap-expect=1 -client=0.0.0.0`
     )
@@ -142,18 +82,7 @@ export class DevAppStack extends Stack {
     mySecurityGroup.addIngressRule(ec2.Peer.ipv4("108.49.70.185/32"), ec2.Port.tcp(22), 'Allow SSH Access')
     mySecurityGroup.addIngressRule(mySecurityGroup, ec2.Port.allTcp(), 'Allow same cluster access')
 
-    // let serverTemplate = new ec2.LaunchTemplate(this, 'game-template', {
-    //   userData: setupCommands,
-    //   launchTemplateName: `game-server-instance`,
-    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T3, ec2.InstanceSize.MEDIUM),
-    //   machineImage,
-    //   securityGroup: mySecurityGroup,
-    //   role: role,
-    //   // https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ec2.LaunchTemplate.html
-    // });
-
     // https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ec2.LaunchTemplate.html
-
     console.log(setupCommands);
     new asg.AutoScalingGroup(this, 'ASG', {
       allowAllOutbound: true,
@@ -175,15 +104,3 @@ export class DevAppStack extends Stack {
     });
   }
 }
-//  let infra = {
-//     vpc: vpcLookup.vpc, // should be derived
-//     keyName: props.keyName,
-//     region: props.region,
-//     role: projectRole.role, // should be made here
-//     subdomain: props.subdomain,
-//     hostedzoneid: hzLookup.hz.hostedZoneId, // Should be derived
-//     instancetype: props.instancetype, // should use some kind of map
-//     sg: appSG, // should be here
-//     hz: hzLookup.hz, // should be dervice
-//     vol: vol, // made here? ephemeral solution?
-//   }
