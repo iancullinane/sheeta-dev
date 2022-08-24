@@ -25,6 +25,7 @@ new DevAppStack(app, 'DevAppStack', {
   project_name: "sheeta-dev",
   region: env.region,
   tld: "sheeta.cloud",
+  keyName: "pz-sheeta-key",
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */

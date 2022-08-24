@@ -23,6 +23,7 @@ export interface AppProps extends StackProps {
   region: string;
   tld: string,
   cloudInitUrl?: string;
+  keyName: string;
 }
 
 export class DevAppStack extends Stack {
@@ -32,9 +33,9 @@ export class DevAppStack extends Stack {
 
 
     // env encryption key
-    // const encryptionKey = new kms.Key(this, 'Key', {
-    //   enableKeyRotation: true,
-    // });
+    const encryptionKey = new kms.Key(this, `${props.project_name}-kms-key`, {
+      enableKeyRotation: true,
+    });
 
     // ec2 istance role and ssm policy
     let role = new iam.Role(this, "ec2Role", {
@@ -74,10 +75,6 @@ export class DevAppStack extends Stack {
     // })
 
 
-    const asset = new Asset(this, 'Asset', {
-      path: './lib/userdata'
-    });
-
     // 
     // 
 
@@ -91,8 +88,38 @@ export class DevAppStack extends Stack {
       `sudo apt update`,
       `sudo apt install -y lib32gcc1 libsdl2-2.0-0:i386 docker.io awscli unzip`,
       `sudo snap start amazon-ssm-agent`,
+      `echo "---- Done with initial deps"`
       // `aws s3 cp ${props.cloudInitUrl}/ /etc/systemd/system/ --recursive`
     );
+
+    // let addUsers: string[] = [
+    //   `echo "---- Add users"`,
+    //   `sudo usermod -aG docker ubuntu`,
+    //   `sudo usermod -aG docker steam`
+    // ];
+    // let installCommands: string[] = [
+    //   `echo "---- Install PZ"`,
+    //   // `mkdir /mnt/${cfg.servername}`,
+    //   // `docker run -v /mnt/${cfg.servername}:/data steamcmd/steamcmd:ubuntu-18 \
+    //   //   +login anonymous \
+    //   //   +force_install_dir /data \
+    //   //   +app_update 380870 validate \
+    //   //   +quit`
+    // ]
+
+    // userData.addCommands(...updateDebian);
+    // setupCommands.addCommands(...addUsers);
+    // setupCommands.addCommands(...installCommands);
+
+    const asset = new Asset(this, 'Asset', {
+      path: './lib/userdata'
+    });
+
+    //     // 👇 load user data script
+    // const userDataScript = fs.readFileSync('./lib/user-data.sh', 'utf8');
+
+    // // 👇 add user data to the EC2 instance
+    // ec2Instance.addUserData(userDataScript);
 
     let userdata = setupCommands.addS3DownloadCommand({
       bucket: asset.bucket,
@@ -104,33 +131,47 @@ export class DevAppStack extends Stack {
     });
     asset.grantRead(role);
 
-
+    setupCommands.addCommands(
+      `docker run -d --rm -p 8500:8500 -p 8600:8600/udp --name=-test-one consul agent -server -ui -node=server-1 -bootstrap-expect=1 -client=0.0.0.0`
+    )
 
 
     const machineImage = ec2.MachineImage.genericLinux(amimap);
 
     const mySecurityGroup = new ec2.SecurityGroup(this, 'AsgSecurityGroup', { vpc: vpc.vpc });
-    let serverTemplate = new ec2.LaunchTemplate(this, 'game-template', {
-      userData: setupCommands,
-      launchTemplateName: `game-server-instance`,
-      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T3, ec2.InstanceSize.MEDIUM),
-      machineImage,
-      securityGroup: mySecurityGroup,
-      role: role,
-      // https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ec2.LaunchTemplate.html
-    });
+    mySecurityGroup.addIngressRule(ec2.Peer.ipv4("108.49.70.185/32"), ec2.Port.tcp(22), 'Allow SSH Access')
+    mySecurityGroup.addIngressRule(mySecurityGroup, ec2.Port.allTcp(), 'Allow same cluster access')
+
+    // let serverTemplate = new ec2.LaunchTemplate(this, 'game-template', {
+    //   userData: setupCommands,
+    //   launchTemplateName: `game-server-instance`,
+    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T3, ec2.InstanceSize.MEDIUM),
+    //   machineImage,
+    //   securityGroup: mySecurityGroup,
+    //   role: role,
+    //   // https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ec2.LaunchTemplate.html
+    // });
 
     // https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ec2.LaunchTemplate.html
 
     console.log(setupCommands);
     new asg.AutoScalingGroup(this, 'ASG', {
+      allowAllOutbound: true,
+      associatePublicIpAddress: true,
       vpc: vpc.vpc,
-      // instanceType: ec2.InstanceType.of(ec2.InstanceClass.BURSTABLE2, ec2.InstanceSize.SMALL),
-      launchTemplate: serverTemplate,
-      // machineImage: new ec2.AmazonLinuxImage(),
-
+      keyName: props.keyName,
+      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T3, ec2.InstanceSize.MEDIUM),
+      machineImage: machineImage,
+      securityGroup: mySecurityGroup,
+      userData: setupCommands,
+      role: role,
+      vpcSubnets: {
+        subnetType: ec2.SubnetType.PUBLIC
+      },
+      // launchTemplate: serverTemplate,
+      desiredCapacity: 1,
       maxCapacity: 1,
-      minCapacity: 1,
+      minCapacity: 0,
     });
   }
 }
