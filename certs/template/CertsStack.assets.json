@@ -1,7 +1,7 @@
 {
   "version": "17.0.0",
   "files": {
-    "9efe56f63b552032b5ec42b4370cba0cde71b4954c32570e6eea7f73f45c4a40": {
+    "b4eb61b82765c698764e1bde0ae50625105a8b19103b47c4ecc46d233bcfce5c": {
       "source": {
         "path": "CertsStack.template.json",
         "packaging": "file"
@@ -9,7 +9,7 @@
       "destinations": {
         "current_account-current_region": {
           "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
-          "objectKey": "9efe56f63b552032b5ec42b4370cba0cde71b4954c32570e6eea7f73f45c4a40.json",
+          "objectKey": "b4eb61b82765c698764e1bde0ae50625105a8b19103b47c4ecc46d233bcfce5c.json",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
         }
       }

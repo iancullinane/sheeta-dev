@@ -13,10 +13,15 @@ export class CertsStack extends Stack {
     super(scope, id, props);
 
     // The code that defines your stack goes here
-
+    // https://github.com/iancullinane/pants-constructs/blob/better-s3-site/lib/acm/index.ts
     let cert = new BasicCert(this, `sheeta-cert`, {
       project_name: "sheeta-certs",
       tld: "sheeta.cloud",
+    })
+
+    let chatCert = new BasicCert(this, `sheeta-chat-cert`, {
+      project_name: "sheeta-certs",
+      tld: "chat.sheeta.cloud",
     })
 
     let certOutputId = `${props.project_name}-cert-arn`

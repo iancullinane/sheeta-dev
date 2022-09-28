@@ -78,6 +78,68 @@
               "version": "10.1.42"
             }
           },
+          "sheeta-chat-cert": {
+            "id": "sheeta-chat-cert",
+            "path": "CertsStack/sheeta-chat-cert",
+            "children": {
+              "chat.sheeta.cloud-tld-hz": {
+                "id": "chat.sheeta.cloud-tld-hz",
+                "path": "CertsStack/sheeta-chat-cert/chat.sheeta.cloud-tld-hz",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "CertsStack/sheeta-chat-cert/chat.sheeta.cloud-tld-hz/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Route53::HostedZone",
+                      "aws:cdk:cloudformation:props": {
+                        "name": "chat.sheeta.cloud."
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_route53.CfnHostedZone",
+                      "version": "2.28.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_route53.HostedZone",
+                  "version": "2.28.0"
+                }
+              },
+              "Certificate": {
+                "id": "Certificate",
+                "path": "CertsStack/sheeta-chat-cert/Certificate",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "CertsStack/sheeta-chat-cert/Certificate/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::CertificateManager::Certificate",
+                      "aws:cdk:cloudformation:props": {
+                        "domainName": "chat.sheeta.cloud",
+                        "subjectAlternativeNames": [
+                          "*.chat.sheeta.cloud"
+                        ],
+                        "validationMethod": "DNS"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_certificatemanager.CfnCertificate",
+                      "version": "2.28.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_certificatemanager.Certificate",
+                  "version": "2.28.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.42"
+            }
+          },
           "sheeta-dev-cert-arn": {
             "id": "sheeta-dev-cert-arn",
             "path": "CertsStack/sheeta-dev-cert-arn",
