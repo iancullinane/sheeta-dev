@@ -1,32 +1,21 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import * as fs from "fs";
-import { DevAppStack } from '../lib/dev-app-stack';
+import { SheetaStack } from '../lib/sheeta-stack';
 
-interface LocalConfig {
-  account: string
-  region: string
-  env: string
-}
+import * as fs from 'fs';
 
 var lclCfg = JSON.parse(fs.readFileSync('../config/base.json', 'utf-8'));
 const env = { region: lclCfg.project.region, account: lclCfg.project.account };
 
-const app = new cdk.App({
-  context: {
-    users: {
-      eignhpants: "108.49.70.185/32"
-    },
-  }
-});
-new DevAppStack(app, 'DevAppStack', {
+const app = new cdk.App();
+new SheetaStack(app, 'SheetaStack', {
   env,
-  projectName: "sheeta",
-  serverName: "survive",
-  region: env.region,
-  tld: "sheeta.cloud",
-  keyName: "pz-sheeta-key",
+  projectName: "chat",
+  appSha: "c87c868b45afca160f49ff3bcfb0862dd516222f",
+  domainName: "chat.sheeta.cloud",
+  repoName: "sheeta.cloud",
+
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */

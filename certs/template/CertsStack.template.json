@@ -22,6 +22,28 @@
     "aws:cdk:path": "CertsStack/sheeta-cert/Certificate/Resource"
    }
   },
+  "sheetachatcertchatsheetacloudtldhzDD3A285A": {
+   "Type": "AWS::Route53::HostedZone",
+   "Properties": {
+    "Name": "chat.sheeta.cloud."
+   },
+   "Metadata": {
+    "aws:cdk:path": "CertsStack/sheeta-chat-cert/chat.sheeta.cloud-tld-hz/Resource"
+   }
+  },
+  "sheetachatcertCertificateA518711A": {
+   "Type": "AWS::CertificateManager::Certificate",
+   "Properties": {
+    "DomainName": "chat.sheeta.cloud",
+    "SubjectAlternativeNames": [
+     "*.chat.sheeta.cloud"
+    ],
+    "ValidationMethod": "DNS"
+   },
+   "Metadata": {
+    "aws:cdk:path": "CertsStack/sheeta-chat-cert/Certificate/Resource"
+   }
+  },
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {

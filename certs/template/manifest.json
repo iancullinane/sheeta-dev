@@ -23,7 +23,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/9efe56f63b552032b5ec42b4370cba0cde71b4954c32570e6eea7f73f45c4a40.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/b4eb61b82765c698764e1bde0ae50625105a8b19103b47c4ecc46d233bcfce5c.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -49,6 +49,18 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "sheetacertCertificate660F1398"
+          }
+        ],
+        "/CertsStack/sheeta-chat-cert/chat.sheeta.cloud-tld-hz/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "sheetachatcertchatsheetacloudtldhzDD3A285A"
+          }
+        ],
+        "/CertsStack/sheeta-chat-cert/Certificate/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "sheetachatcertCertificateA518711A"
           }
         ],
         "/CertsStack/sheeta-dev-cert-arn": [

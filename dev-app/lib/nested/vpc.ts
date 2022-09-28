@@ -20,7 +20,5 @@ export class VpcBaseStack extends cdk.NestedStack {
     }).vpc;
     Tags.of(this.vpc).add('Name', `${props.name}-base-vpc`);
     Tags.of(this.vpc).add('Environment', `dev`);
-
-
   }
 }
