@@ -3,11 +3,11 @@ import { Construct } from 'constructs';
 import { HttpLambdaIntegration } from "@aws-cdk/aws-apigatewayv2-integrations-alpha";
 import * as route53 from 'aws-cdk-lib/aws-route53';
 import * as ecr from "aws-cdk-lib/aws-ecr";
+import * as acm from "aws-cdk-lib/aws-certificatemanager";
+import * as apigwv2 from "@aws-cdk/aws-apigatewayv2-alpha";
 import * as iam from "aws-cdk-lib/aws-iam";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as targets from "aws-cdk-lib/aws-route53-targets";
-import * as acm from "aws-cdk-lib/aws-certificatemanager";
-import * as apigwv2 from "@aws-cdk/aws-apigatewayv2-alpha";
 
 export interface ConfigProps extends StackProps {
   projectName: string,
@@ -17,11 +17,13 @@ export interface ConfigProps extends StackProps {
 }
 
 export class SheetaStack extends Stack {
+
   declare sha: string;
   repo: ecr.IRepository;
   cert: acm.ICertificate;
   topDomain: route53.IHostedZone;
   gatewayDomain: apigwv2.IDomainName;
+
   constructor(scope: Construct, id: string, props: ConfigProps) {
     super(scope, id, props);
 

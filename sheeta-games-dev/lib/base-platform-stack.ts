@@ -1,29 +1,3 @@
-// import { Tags } from 'aws-cdk-lib';
-// import * as ec2 from 'aws-cdk-lib/aws-ec2';
-// import * as cdk from 'aws-cdk-lib';
-// import { Construct } from 'constructs';
-// import { SimpleVpc } from '@ianpants/pants-constructs';
-
-// export interface VpcBaseProps extends cdk.NestedStackProps {
-//   name: string,
-// }
-
-// export class VpcBaseStack extends cdk.NestedStack {
-//   public readonly vpc: ec2.IVpc;
-
-//   constructor(scope: Construct, id: string, props: VpcBaseProps) {
-//     super(scope, id, props);
-
-//     // The code that defines your stack goes here
-//     this.vpc = new SimpleVpc(this, `vpc`, {
-//       project_name: props.name,
-//     }).vpc;
-//     Tags.of(this.vpc).add('Name', `${props.name}-base-vpc`);
-//     Tags.of(this.vpc).add('Environment', `dev`);
-//   }
-// }
-
-
 
 import { Stack, StackProps, Tags, Fn, Size, RemovalPolicy } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
@@ -41,6 +15,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import { Network } from './components/networking'
+import { Sheeta } from './components/sheeta'
 
 // Ubuntu 20.04 LTS
 const amimap: Record<string, string> = {
@@ -84,6 +59,16 @@ export class BasePlatformStack extends Stack {
 
 
     const network = new Network(this, `network-layer`, { tld: props.tld })
+
+    const sheeta = new Sheeta(this, `sheeta`, { hosted_zone: network.hosted_zone })
+
+    //     export interface SheetaProps {
+    //   account: string;
+    //   lambda_tag: string;
+    //   hosted_zone: r53.IHostedZone;
+    //   network: Network;
+    // }
+
 
     // const vpc = new VpcBaseStack(this, `${props.projectName}-vpc`, { name: props.projectName })
     // let pzHz = new r53.PublicHostedZone(this, "HostedZoneDev", {

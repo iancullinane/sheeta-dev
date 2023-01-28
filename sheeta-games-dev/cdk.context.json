@@ -4,5 +4,9 @@
     "us-east-2b",
     "us-east-2c"
   ],
-  "ami:account=208744038881:filters.image-type.0=machine:filters.name.0=amzn-ami-vpc-nat-*:filters.state.0=available:owners.0=amazon:region=us-east-2": "ami-076510d448bea6be7"
+  "ami:account=208744038881:filters.image-type.0=machine:filters.name.0=amzn-ami-vpc-nat-*:filters.state.0=available:owners.0=amazon:region=us-east-2": "ami-076510d448bea6be7",
+  "hosted-zone:account=208744038881:domainName=sheeta.cloud:region=us-east-2": {
+    "Id": "/hostedzone/Z04581111VJQ95POX6EG",
+    "Name": "sheeta.cloud."
+  }
 }
