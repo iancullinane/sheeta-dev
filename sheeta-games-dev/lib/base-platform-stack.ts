@@ -28,11 +28,10 @@ const DIST_DIR = path.join(process.cwd(), "assets", "dist")
 
 export interface BasePlatformStackProps extends StackProps {
   projectName: string;
+  accountId: string,
   region: string;
   tld: string,
-  // serverName: string;
   cloudInitUrl?: string;
-  // keyName: string;
 }
 
 export class BasePlatformStack extends Stack {
@@ -60,14 +59,13 @@ export class BasePlatformStack extends Stack {
 
     const network = new Network(this, `network-layer`, { tld: props.tld })
 
-    const sheeta = new Sheeta(this, `sheeta`, { hosted_zone: network.hosted_zone })
+    new Sheeta(this, `sheeta`, {
+      network,
+      image_tag: "master-latest",
+      ssmSourceAccount: props.accountId,
+    })
 
-    //     export interface SheetaProps {
-    //   account: string;
-    //   lambda_tag: string;
-    //   hosted_zone: r53.IHostedZone;
-    //   network: Network;
-    // }
+
 
 
     // const vpc = new VpcBaseStack(this, `${props.projectName}-vpc`, { name: props.projectName })

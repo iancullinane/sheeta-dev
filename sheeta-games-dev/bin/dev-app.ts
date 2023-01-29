@@ -18,9 +18,9 @@ const app = new cdk.App()
 new BasePlatformStack(app, lclCfg.project.name, {
   env,
   projectName: lclCfg.project.name,
-
   region: env.region,
   tld: lclCfg.network.tld,
+  accountId: lclCfg.platfom.account,
   // keyName: "pz-sheeta-key",
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,

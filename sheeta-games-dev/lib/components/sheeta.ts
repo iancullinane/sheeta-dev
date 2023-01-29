@@ -14,10 +14,9 @@ import { HttpLambdaIntegration } from "@aws-cdk/aws-apigatewayv2-integrations-al
 const certArn = "arn:aws:acm:us-east-2:208744038881:certificate/469d11dc-2976-4221-8505-d5f560080baa";
 
 export interface SheetaProps {
-  account: string;
-  lambda_tag: string;
-  hosted_zone: r53.IHostedZone;
+  image_tag: string;
   network: Network;
+  ssmSourceAccount: string,
 }
 
 export class Sheeta extends Construct {
@@ -29,7 +28,7 @@ export class Sheeta extends Construct {
   constructor(scope: Construct, id: string, props: SheetaProps) {
     super(scope, id);
 
-    var chatDomain = "chat" + props.hosted_zone.zoneName
+    var chatDomain = "chat" + props.network.hosted_zone
     this.repo = new ecr.Repository(this, 'sheeta');
     // this.repo = ecr.Repository.fromRepositoryName(this, `sheeta-ecr-repo`, props.repoName)
     // TODO::If there is no repo use this:
@@ -42,7 +41,7 @@ export class Sheeta extends Construct {
 
     this.cert = new acm.Certificate(this, 'chat-bot-cert', {
       domainName: "chat.sheeta.cloud",
-      validation: acm.CertificateValidation.fromDns(props.hosted_zone),
+      validation: acm.CertificateValidation.fromDns(props.network.hosted_zone),
     })
     this.gatewayDomain = new apigwv2.DomainName(this, "chat-domain", {
       domainName: chatDomain,
@@ -70,7 +69,7 @@ export class Sheeta extends Construct {
         statements: [
           new iam.PolicyStatement({
             actions: ["ssm:Describe*", "ssm:GetParam*"],
-            resources: [`arn:aws:ssm:us-east-2:${props.account}:parameter/*`],
+            resources: [`arn:aws:ssm:us-east-2:${props.ssmSourceAccount}:parameter/*`],
           }),
           // placeholder but also example if bot were to manpiulate r53
           // new iam.PolicyStatement({
@@ -106,10 +105,10 @@ export class Sheeta extends Construct {
     const sheetaLambda = new lambda.DockerImageFunction(this, `docker-image-function`, {
       role: sheetaLambdaRole,
       environment: {
-        CodeVersionString: props.lambda_tag,
+        CodeVersionString: props.image_tag,
       },
       code: lambda.DockerImageCode.fromEcr(this.repo, {
-        tag: props.lambda_tag,
+        tag: props.image_tag,
       }),
     });
 
@@ -135,7 +134,7 @@ export class Sheeta extends Construct {
     // // ------ Networking
     console.log("Add A record to");
     new r53.ARecord(this, `ARecord-chat-domain`, {
-      zone: props.hosted_zone,
+      zone: props.network.hosted_zone,
       target: r53.RecordTarget.fromAlias(
         new targets.ApiGatewayv2DomainProperties(
           this.gatewayDomain.regionalDomainName,
