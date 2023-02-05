@@ -4,14 +4,20 @@ import * as cdk from 'aws-cdk-lib';
 import * as fs from "fs";
 import { BasePlatformStack } from '../lib/base-platform-stack';
 
-interface LocalConfig {
-  account: string
-  region: string
-  env: string
-}
+// interface LocalConfig {
+//   account: string
+//   region: string
+//   env: string
+// }
 
 var lclCfg = JSON.parse(fs.readFileSync('../config/base.json', 'utf-8'));
-const env = { region: lclCfg.network.region, account: lclCfg.project.account };
+const env = { region: lclCfg.platform.region, account: lclCfg.platform.account };
+
+console.log(lclCfg.platform.account);
+
+
+// console.log(env);
+
 
 const app = new cdk.App()
 
@@ -20,7 +26,7 @@ new BasePlatformStack(app, lclCfg.project.name, {
   projectName: lclCfg.project.name,
   region: env.region,
   tld: lclCfg.network.tld,
-  accountId: lclCfg.platfom.account,
+  accountId: lclCfg.platform.account,
   // keyName: "pz-sheeta-key",
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,

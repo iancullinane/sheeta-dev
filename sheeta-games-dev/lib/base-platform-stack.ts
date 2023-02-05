@@ -59,11 +59,11 @@ export class BasePlatformStack extends Stack {
 
     const network = new Network(this, `network-layer`, { tld: props.tld })
 
-    new Sheeta(this, `sheeta`, {
-      network,
-      image_tag: "master-latest",
-      ssmSourceAccount: props.accountId,
-    })
+    // new Sheeta(this, `sheeta`, {
+    //   network,
+    //   image_tag: "master-latest",
+    //   ssmSourceAccount: props.accountId,
+    // })
 
 
 
