@@ -50,8 +50,8 @@ SandboxVars = {
     -- 9 = September
     -- 10 = October
     -- 11 = November
-    StartMonth = 9,
-    StartDay = 22,
+    StartMonth =11,
+    StartDay = 2,
     -- Default=9 AM
     -- 1 = 7 AM
     -- 2 = 9 AM
@@ -89,37 +89,37 @@ SandboxVars = {
     -- 2 = Rare
     -- 3 = Normal
     -- 4 = Common
-    FoodLoot = 2,
+    FoodLoot = 1,
     -- Default=Rare
     -- 1 = Extremely Rare
     -- 2 = Rare
     -- 3 = Normal
     -- 4 = Common
-    CannedFoodLoot = 2,
+    CannedFoodLoot = 1,
     -- Default=Rare
     -- 1 = Extremely Rare
     -- 2 = Rare
     -- 3 = Normal
     -- 4 = Common
-    LiteratureLoot = 4,
+    LiteratureLoot = 2,
     -- Seeds, Nails, Saws, Fishing Rods, various tools, etc... Default=Rare
     -- 1 = Extremely Rare
     -- 2 = Rare
     -- 3 = Normal
     -- 4 = Common
-    SurvivalGearsLoot = 3,
+    SurvivalGearsLoot = 1,
     -- Default=Rare
     -- 1 = Extremely Rare
     -- 2 = Rare
     -- 3 = Normal
     -- 4 = Common
-    MedicalLoot = 2,
+    MedicalLoot = 1,
     -- Default=Rare
     -- 1 = Extremely Rare
     -- 2 = Rare
     -- 3 = Normal
     -- 4 = Common
-    WeaponLoot = 3,
+    WeaponLoot = 2,
     -- Default=Rare
     -- 1 = Extremely Rare
     -- 2 = Rare
@@ -131,7 +131,7 @@ SandboxVars = {
     -- 2 = Rare
     -- 3 = Normal
     -- 4 = Common
-    AmmoLoot = 2,
+    AmmoLoot = 1,
     -- Default=Rare
     -- 1 = Extremely Rare
     -- 2 = Rare
@@ -161,9 +161,9 @@ SandboxVars = {
     -- 2 = Fast (50 Days)
     -- 3 = Normal (100 Days)
     -- 4 = Slow (200 Days)
-    ErosionSpeed = 3,
+    ErosionSpeed = 4,
     -- Number of days until 100% growth. -1 means no growth. Zero means use the Erosion Speed option. Maximum 36,500 (100 years). Minimum=-1 Maximum=36500 Default=0
-    ErosionDays = 0,
+    ErosionDays = 500,
     -- Modifies the base XP gain from actions by this number. Minimum=0.00 Maximum=1000.00 Default=1.00
     XpMultiplier = 3.0,
     -- Use this to multiply or reduce engine general loudness. Minimum=0.00 Maximum=100.00 Default=1.00
@@ -203,7 +203,7 @@ SandboxVars = {
     -- 3 = Rare
     -- 4 = Sometimes
     -- 5 = Often
-    Alarm = 1,
+    Alarm = 2,
     -- How frequently homes and buildings will be discovered locked Default=Very Often
     -- 1 = Never
     -- 2 = Extremely Rare
@@ -235,7 +235,7 @@ SandboxVars = {
     -- 4 = Every Month
     LootRespawn = 1,
     -- When > 0, loot will not respawn in zones that have been visited within this number of in-game hours. Minimum=0 Maximum=2147483647 Default=0
-    SeenHoursPreventLootRespawn = 216,
+    SeenHoursPreventLootRespawn = 0,
     -- A comma-separated list of item types that will be removed after HoursForWorldItemRemoval hours.
     WorldItemRemovalList = "Base.Vest,Base.Shirt,Base.Blouse,Base.Skirt,Base.Shoes,Base.Hat,Base.Glasses,Base.Maggots",
     -- Number of hours since an item was dropped on the ground before it is removed.  Items are removed the next time that part of the map is loaded.  Zero means items are not removed. Minimum=0.00 Maximum=2147483647.00 Default=24.00
@@ -292,7 +292,7 @@ SandboxVars = {
     -- 2 = Rare
     -- 3 = Sometimes
     -- 4 = Often
-    GeneratorSpawning = 3,
+    GeneratorSpawning = 1,
     -- How much fuel is consumed per in-game hour. Minimum=0.00 Maximum=100.00 Default=1.00
     GeneratorFuelConsumption = 1.0,
     -- Increase/decrease probability of discovering randomized safe houses on the map: either burnt out, containing loot stashes, dead survivor bodies etc. Default=Rare
@@ -308,14 +308,14 @@ SandboxVars = {
     -- 3 = Rare
     -- 4 = Sometimes
     -- 5 = Often
-    VehicleStoryChance = 4,
+    VehicleStoryChance = 3,
     -- Default=Rare
     -- 1 = Never
     -- 2 = Extremely Rare
     -- 3 = Rare
     -- 4 = Sometimes
     -- 5 = Often
-    ZoneStoryChance = 4,
+    ZoneStoryChance = 3,
     -- Impacts on how often a looted map will have annotations marked on it by a deceased survivor. Default=Sometimes
     -- 1 = Never
     -- 2 = Extremely Rare
@@ -360,13 +360,13 @@ SandboxVars = {
     -- 2 = Low
     -- 3 = Normal
     -- 4 = High
-    BloodLevel = 2,
+    BloodLevel = 3,
     -- Governs how quickly clothing degrades, becomes dirty, and bloodied. Default=Normal
     -- 1 = Disabled
     -- 2 = Slow
     -- 3 = Normal
-    ClothingDegradation = 2,
-    FireSpread = true,
+    ClothingDegradation = 3,
+    FireSpread = false,
     -- Number of in-game days before rotten food is removed from the map. -1 means rotten food is never removed. Minimum=-1 Maximum=2147483647 Default=-1
     DaysForRottenFoodRemoval = 14,
     -- If enabled, generators will work on exterior tiles, allowing for example to power gas pump.
@@ -400,7 +400,7 @@ SandboxVars = {
     -- Governs the chances of finding vehicles with gas in the tank. Default=Low
     -- 1 = Low
     -- 2 = Normal
-    ChanceHasGas = 1,
+    ChanceHasGas = 2,
     -- Governs how full gas tanks will be in discovered cars. Default=Low
     -- 1 = Very Low
     -- 2 = Low
@@ -496,7 +496,7 @@ SandboxVars = {
         -- 4 = 0-12 Hours
         -- 5 = 2-3 Days
         -- 6 = 1-2 Weeks
-        Mortality = 5,
+        Mortality = 4,
         -- Controls how quickly corpses rise as zombies. Default=0-1 Minutes
         -- 1 = Instant
         -- 2 = 0-30 Seconds
@@ -521,7 +521,7 @@ SandboxVars = {
         -- 1 = Long
         -- 2 = Normal
         -- 3 = Short
-        Memory = 2,
+        Memory = 3,
         -- Controls the effects of decomposition over time. Default=Slows + Weakens
         -- 1 = Slows + Weakens
         -- 2 = Slows
@@ -554,7 +554,7 @@ SandboxVars = {
         -- Set by the "Zombie Count" population option. 4.0 = Insane, Very High = 3.0, 2.0 = High, 1.0 = Normal, 0.35 = Low, 0.0 = None. Minimum=0.00 Maximum=4.00 Default=1.00
         PopulationMultiplier = 1.0,
         -- Adjusts the desired population at the start of the game. Minimum=0.00 Maximum=4.00 Default=1.00
-        PopulationStartMultiplier = 0.7,
+        PopulationStartMultiplier = 0.8,
         -- Adjusts the desired population on the peak day. Minimum=0.00 Maximum=4.00 Default=1.50
         PopulationPeakMultiplier = 1.5,
         -- The day when the population reaches it's peak. Minimum=1 Maximum=365 Default=28
@@ -562,7 +562,7 @@ SandboxVars = {
         -- The number of hours that must pass before zombies may respawn in a cell. If zero, spawning is disabled. Minimum=0.00 Maximum=8760.00 Default=72.00
         RespawnHours = 120.0,
         -- The number of hours that a chunk must be unseen before zombies may respawn in it. Minimum=0.00 Maximum=8760.00 Default=16.00
-        RespawnUnseenHours = 72.0,
+        RespawnUnseenHours = 16.0,
         -- The fraction of a cell's desired population that may respawn every RespawnHours. Minimum=0.00 Maximum=1.00 Default=0.10
         RespawnMultiplier = 0.1,
         -- The number of hours that must pass before zombies migrate to empty parts of the same cell. If zero, migration is disabled. Minimum=0.00 Maximum=8760.00 Default=12.00
@@ -570,12 +570,12 @@ SandboxVars = {
         -- The distance a zombie will try to walk towards the last sound it heard. Minimum=10 Maximum=1000 Default=100
         FollowSoundDistance = 100,
         -- The size of groups real zombies form when idle. Zero means zombies don't form groups. Groups don't form inside buildings or forest zones. Minimum=0 Maximum=1000 Default=20
-        RallyGroupSize = 30,
+        RallyGroupSize = 50,
         -- The distance real zombies travel to form groups when idle. Minimum=5 Maximum=50 Default=20
         RallyTravelDistance = 20,
         -- The distance between zombie groups. Minimum=5 Maximum=25 Default=15
-        RallyGroupSeparation = 20,
+        RallyGroupSeparation = 15,
         -- How close members of a group stay to the group's leader. Minimum=1 Maximum=10 Default=3
-        RallyGroupRadius = 2,
+        RallyGroupRadius = 3,
     },
 }
