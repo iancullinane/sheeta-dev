@@ -13,12 +13,6 @@ import { BasePlatformStack } from '../lib/base-platform-stack';
 var lclCfg = JSON.parse(fs.readFileSync('../config/base.json', 'utf-8'));
 const env = { region: lclCfg.platform.region, account: lclCfg.platform.account };
 
-console.log(lclCfg.platform.account);
-
-
-// console.log(env);
-
-
 const app = new cdk.App()
 
 new BasePlatformStack(app, lclCfg.project.name, {
@@ -28,25 +22,5 @@ new BasePlatformStack(app, lclCfg.project.name, {
   tld: lclCfg.network.tld,
   accountId: lclCfg.platform.account,
   // keyName: "pz-sheeta-key",
-  /* If you don't specify 'env', this stack will be environment-agnostic.
-   * Account/Region-dependent features and context lookups will not work,
-   * but a single synthesized template can be deployed anywhere. */
 
-  /* Uncomment the next line to specialize this stack for the AWS Account
-   * and Region that are implied by the current CLI configuration. */
-  // env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION },
-
-  /* Uncomment the next line if you know exactly what Account and Region you
-   * want to deploy the stack to. */
-  // env: { account: '123456789012', region: 'us-east-1' },
-
-  /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
 });
-
-// const app = new cdk.App({
-//   context: {
-//     users: {
-//       eignhpants: "108.49.70.185/32"
-//     },
-//   }
-// });

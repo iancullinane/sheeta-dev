@@ -15,6 +15,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import { Network } from './components/networking'
+import { BaseRoles } from './components/roles'
 import { Sheeta } from './components/sheeta'
 
 // Ubuntu 20.04 LTS
@@ -41,29 +42,19 @@ export class BasePlatformStack extends Stack {
   constructor(scope: Construct, id: string, props: BasePlatformStackProps) {
     super(scope, id, props);
 
-
-
     // env encryption key
     const encryptionKey = new kms.Key(this, `${props.projectName}-kms-key`, {
       enableKeyRotation: true,
     });
 
-    // ec2 istance role and ssm policy
-    let role = new iam.Role(this, "ec2Role", {
-      assumedBy: new iam.ServicePrincipal("ec2.amazonaws.com"),
-    });
-    role.addManagedPolicy(
-      iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonSSMManagedInstanceCore")
-    );
-
-
+    let roles = new BaseRoles(this, "base-roles")
     const network = new Network(this, `network-layer`, { tld: props.tld })
 
-    // new Sheeta(this, `sheeta`, {
-    //   network,
-    //   image_tag: "master-latest",
-    //   ssmSourceAccount: props.accountId,
-    // })
+    new Sheeta(this, `sheeta`, {
+      network,
+      image_tag: "master-latest",
+      ssmSourceAccount: props.accountId,
+    })
 
 
 
