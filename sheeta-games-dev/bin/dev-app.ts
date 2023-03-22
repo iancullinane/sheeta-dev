@@ -4,11 +4,6 @@ import * as cdk from 'aws-cdk-lib';
 import * as fs from "fs";
 import { BasePlatformStack } from '../lib/base-platform-stack';
 
-// interface LocalConfig {
-//   account: string
-//   region: string
-//   env: string
-// }
 
 var lclCfg = JSON.parse(fs.readFileSync('../config/base.json', 'utf-8'));
 const env = { region: lclCfg.platform.region, account: lclCfg.platform.account };
@@ -21,6 +16,4 @@ new BasePlatformStack(app, lclCfg.project.name, {
   region: env.region,
   tld: lclCfg.network.tld,
   accountId: lclCfg.platform.account,
-  // keyName: "pz-sheeta-key",
-
 });
