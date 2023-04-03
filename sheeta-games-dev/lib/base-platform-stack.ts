@@ -18,6 +18,8 @@ import { Network } from './components/networking'
 import { BaseRoles } from './components/roles'
 import { Sheeta } from './components/sheeta'
 import { StaticSite } from './components/static-site'
+import { Config, NetworkCfg } from '../lib/types';
+// import { SiteConfig } from '../bin/dev-app'
 
 // Ubuntu 20.04 LTS
 const amimap: Record<string, string> = {
@@ -29,39 +31,42 @@ const TEMPLATE_DIR = path.join(__dirname, "..", "assets", "templates")
 const DIST_DIR = path.join(process.cwd(), "assets", "dist")
 
 export interface BasePlatformStackProps extends StackProps {
-  projectName: string;
-  accountId: string,
-  region: string;
-  tld: string,
-  cloudInitUrl?: string;
+  cfg: Config,
 }
 
 export class BasePlatformStack extends Stack {
 
   public readonly vpc: ec2.IVpc;
+  public readonly kmsKey: kms.IKey;
+  public readonly network: Network;
 
   constructor(scope: Construct, id: string, props: BasePlatformStackProps) {
     super(scope, id, props);
 
     // env encryption key
-    const encryptionKey = new kms.Key(this, `${props.projectName}-kms-key`, {
+    this.kmsKey = new kms.Key(this, `kms-key`, {
       enableKeyRotation: true,
     });
 
     let roles = new BaseRoles(this, "base-roles")
-    const network = new Network(this, `network-layer`, { tld: props.tld })
+    this.network = new Network(this, `network-layer`, { cfg: props.cfg })
 
-    console.log(`Using network\nVPC ID:\t${network.vpc.vpcId}\nHosted Zone:\t${network.hosted_zone.zoneName}`)
+    // console.log(`Using network\nVPC ID:\t${this.network.vpc.vpcId}\nHosted Zone:\t${this.network.hosted_zone.zoneName}`)
 
-    // Deploy the Sheeta application lambda allowing for Discord integration
-    new Sheeta(this, `sheeta`, {
-      network,
-      image_tag: "lambda-version",
-      ssmSourceAccount: props.accountId,
-    })
+    // props.cfg.staticSiteConfigs.forEach(c => {
+    //   let r = (Math.random() + 1).toString(36).substring(7);
+    //   new StaticSite(this, `static-site-${r}`, {
+    //     domainName: c.domainName,
+    //   })
+    // });
 
-    // new StaticSite(this, `static-site`, {
-    //   domainName: "iancullinane.com",
+
+    // // Deploy the Sheeta application lambda allowing for Discord integration
+    // new Sheeta(this, `sheeta`, {
+    //   network,
+    //   image_tag: "lambda-version",
+    //   ssmSourceAccount: props.accountId,
     // })
+
   }
 }

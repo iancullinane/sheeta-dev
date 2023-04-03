@@ -3,17 +3,17 @@ import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import * as fs from "fs";
 import { BasePlatformStack } from '../lib/base-platform-stack';
+import { Config } from '../lib/types';
 
 
-var lclCfg = JSON.parse(fs.readFileSync('../config/base.json', 'utf-8'));
-const env = { region: lclCfg.platform.region, account: lclCfg.platform.account };
+var lclCfg = JSON.parse(fs.readFileSync('../config/base.json', 'utf-8')) as Config;
+const env = { region: lclCfg.env.region, account: lclCfg.env.account };
 
 const app = new cdk.App()
 
-new BasePlatformStack(app, lclCfg.project.name, {
+new BasePlatformStack(app, lclCfg.name, {
+  cfg: lclCfg,
   env,
-  projectName: lclCfg.project.name,
-  region: env.region,
-  tld: lclCfg.network.tld,
-  accountId: lclCfg.platform.account,
+
 });
+

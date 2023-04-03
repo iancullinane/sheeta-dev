@@ -94,7 +94,7 @@ export class Sheeta extends Construct {
         CodeVersionString: props.image_tag,
       },
       code: lambda.DockerImageCode.fromEcr(this.repo, {
-        tag: props.image_tag,
+        tagOrDigest: props.image_tag,
       }),
     });
 

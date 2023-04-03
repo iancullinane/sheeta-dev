@@ -4,49 +4,47 @@ import { Construct } from 'constructs';
 import { Vpc, IVpc, NatProvider, SecurityGroup, InstanceType } from "aws-cdk-lib/aws-ec2";
 import * as r53 from 'aws-cdk-lib/aws-route53';
 import * as ec2 from "aws-cdk-lib/aws-ec2";
-
+import { Config } from '../../lib/types';
 
 
 export interface NetworkProps {
-  tld: string;
+  cfg: Config;
 }
 
 export class Network extends Construct {
-
-  public readonly hosted_zone: r53.IHostedZone;
-  public readonly vpc: ec2.IVpc;
-  public readonly network_sg: ec2.ISecurityGroup;
+  public readonly hostedZones: r53.IHostedZone[];
 
   constructor(scope: Construct, id: string, props: NetworkProps) {
     super(scope, id);
-
-    // hosted zones are created manually, their certs are a seperate stack
-    this.hosted_zone = r53.HostedZone.fromLookup(this, `tld-hz-lookup`, {
-      domainName: props.tld,
+    Array.from(props.cfg.networks.keys()).forEach(key => {
+      console.log(key)
     });
+    // props.cfg.networks.forEach((v, k) => {
+    //   if (v.hostedZoneId && v.nsRecords) {
+    //     throw new Error("Cannot declare a hosted zone ID and NS records at the same time");
+    //   }
 
+    //   let x = (Math.random() + 1).toString(36).substring(7);
+    //   if (v.hostedZoneId) {
+    //     var hz = r53.HostedZone.fromLookup(this, `tld-hz-lookup-${x}`, {
+    //       domainName: k,
+    //     });
+    //     this.hostedZones.push(hz);
+    //   } else if (v.nsRecords) {
+    //     var hzWithNs = new r53.HostedZone(this, 'HostedZone', {
+    //       zoneName: k,
+    //     });
 
-    // Configure the `natGatewayProvider` when defining a Vpc
-    const natGatewayProvider = NatProvider.instance({
-      instanceType: new InstanceType("t2.micro"),
-    });
-
-
-
-    // The code that defines your stack goes here
-    this.vpc = new Vpc(this, `base-vpc`, {
-      maxAzs: 1,
-      natGatewayProvider: natGatewayProvider,
-    });
-
-
-    this.network_sg = new SecurityGroup(this, 'SG', { vpc: this.vpc });
-
-
+    //     new r53.NsRecord(this, 'NSRecord', {
+    //       zone: hzWithNs,
+    //       recordName: k,
+    //       values: v.nsRecords,
+    //     });
+    //     this.hostedZones.push(hzWithNs);
+    //   };
+    // }
+    // );
   }
+};
 
-  greet() {
-    return "Hello, ";
-  }
 
-}
