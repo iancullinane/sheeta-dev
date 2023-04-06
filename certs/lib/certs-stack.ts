@@ -24,14 +24,16 @@ export class CertsStack extends Stack {
       tld: "chat.sheeta.cloud",
     })
 
+    let personalityCert = new BasicCert(this, `personality-cert`, {
+      project_name: "sheeta-certs",
+      tld: "personality.sheeta.cloud",
+    })
+
     let certOutputId = `${props.project_name}-cert-arn`
     new CfnOutput(this, certOutputId, { value: cert.cert.certificateArn, exportName: `${props.project_name}-cert-arn` });
     let hzOutputId = `${props.project_name}-hz-id`
     new CfnOutput(this, hzOutputId, { value: cert.tld.hostedZoneId, exportName: `${props.project_name}-hz-id` });//
-
-    // example resource
-    // const queue = new sqs.Queue(this, 'CertsQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    let personalityOutputId = `peronality-hz-id`
+    new CfnOutput(this, personalityOutputId, { value: cert.tld.hostedZoneId, exportName: `peronality-hz-id` });//
   }
 }

@@ -8,5 +8,13 @@
   "hosted-zone:account=208744038881:domainName=sheeta.cloud:region=us-east-2": {
     "Id": "/hostedzone/Z04581111VJQ95POX6EG",
     "Name": "sheeta.cloud."
+  },
+  "hosted-zone:account=208744038881:domainName=chat.sheeta.cloud:region=us-east-2": {
+    "Id": "/hostedzone/Z007497529J1W1NII98KE",
+    "Name": "chat.sheeta.cloud."
+  },
+  "hosted-zone:account=208744038881:domainName=iancullinane.com:region=us-east-2": {
+    "Id": "/hostedzone/Z07380412K8MVFO06M2JN",
+    "Name": "iancullinane.com."
   }
 }
