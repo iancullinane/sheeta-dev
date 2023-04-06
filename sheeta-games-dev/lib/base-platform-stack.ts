@@ -39,6 +39,7 @@ export class BasePlatformStack extends Stack {
   public readonly vpc: ec2.IVpc;
   public readonly kmsKey: kms.IKey;
   public readonly network: Network;
+  public readonly sites: StaticSite;
 
   constructor(scope: Construct, id: string, props: BasePlatformStackProps) {
     super(scope, id, props);
@@ -50,6 +51,8 @@ export class BasePlatformStack extends Stack {
 
     let roles = new BaseRoles(this, "base-roles")
     this.network = new Network(this, `network-layer`, { cfg: props.cfg })
+    this.sites = new StaticSite(this, `static-site`, { cfg: props.cfg, network: this.network })
+
 
     // console.log(`Using network\nVPC ID:\t${this.network.vpc.vpcId}\nHosted Zone:\t${this.network.hosted_zone.zoneName}`)
 

@@ -6,7 +6,14 @@
 export interface Config {
   name: string;
   env: EnvironCfg;
-  networks: Map<string, NetworkCfg>;
+  networks: Record<string, NetworkCfg>;
+  sites: StaticSiteCfg[];
+}
+
+export interface NetworkCfg {
+  hostedZoneId?: string;
+  nsRecords?: string[];
+  subdomains?: string[];
 }
 
 export interface EnvironCfg {
@@ -14,8 +21,6 @@ export interface EnvironCfg {
   region: string;
 }
 
-export interface NetworkCfg {
-  hostedZoneId?: string
-  nsRecords?: string[];
-  subdomains?: string[];
+export interface StaticSiteCfg {
+  tld: string;
 }
