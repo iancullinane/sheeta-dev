@@ -40,7 +40,8 @@ export class StaticSite extends Construct {
     for (const site of props.cfg.sites) {
       console.log(site.tld)
 
-      const websiteBucket = new s3.Bucket(this, `${site.tld}-site-bucket-bump`, {
+
+      const websiteBucket = new s3.Bucket(this, `${site.tld}-site-bucket-bump-2`, {
         bucketName: site.tld,
         removalPolicy: RemovalPolicy.DESTROY,
         autoDeleteObjects: true,
@@ -58,17 +59,17 @@ export class StaticSite extends Construct {
 
         // https://adamtheautomator.com/aws-s3-static-ssl-website/
 
-        new route53.CnameRecord(this, 'WwwRecord', {
-          recordName: 'www',
-          zone: props.network.hostedZones.get(site.tld) as IHostedZone,
-          domainName: `www.${site.tld}`,
-        });
+        // new route53.CnameRecord(this, 'WwwRecord', {
+        //   recordName: 'www',
+        //   zone: props.network.hostedZones.get(site.tld) as IHostedZone,
+        //   domainName: site.tld,
+        // });
 
-        new route53.ARecord(this, 'AliasRecord', {
-          zone: props.network.hostedZones.get(site.tld) as IHostedZone,
-          recordName: site.tld,
-          target: route53.RecordTarget.fromAlias(new targets.BucketWebsiteTarget(websiteBucket)),
-        });
+        // new route53.ARecord(this, 'AliasRecord', {
+        //   zone: props.network.hostedZones.get(site.tld) as IHostedZone,
+        //   recordName: site.tld,
+        //   target: route53.RecordTarget.fromAlias(new targets.BucketWebsiteTarget(websiteBucket)),
+        // });
       };
     }
   }
@@ -78,7 +79,7 @@ export class StaticSite extends Construct {
     // const zone = route53.HostedZone.fromLookup(this, 'Zone', { domainName: props.domainName });
     // const siteDomain = props.domainName;
     // const cloudfrontOAI = new cloudfront.OriginAccessIdentity(this, 'cloudfront-OAI', {
-    //   comment: `OAI for ${name}`
+    //   comment: `OAI for ${ name }`
     // });
 
     // // Content bucket
@@ -112,7 +113,7 @@ export class StaticSite extends Construct {
     // // TLS certificate
     // const certificate = new acm.Certificate(this, 'SiteCertificate', {
     //   domainName: siteDomain,
-    //   subjectAlternativeNames: [`*.${siteDomain}`],
+    //   subjectAlternativeNames: [`*.${ siteDomain }`],
     //   validation: acm.CertificateValidation.fromDnsMultiZone({
     //     'iancullinane.com': zone,
     //     '*.iancullinane.com': zone,

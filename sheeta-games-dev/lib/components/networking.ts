@@ -32,17 +32,17 @@ export class Network extends Construct {
         var hz = r53.HostedZone.fromLookup(this, `tld-hz-lookup-${x}`, {
           domainName: key,
         });
+
+        const cert = new acm.Certificate(this, 'Certificate', {
+          domainName: key,
+          subjectAlternativeNames: ["www." + key],
+          validation: acm.CertificateValidation.fromDns(hz),
+        });
+
         this.hostedZones.set(key, hz);
       } else if (temp.nsRecords) {
         var newHz = new r53.HostedZone(this, 'HostedZone', {
           zoneName: key,
-        });
-
-        const cert = new acm.Certificate(this, 'Certificate', {
-          domainName: key,
-          validation: acm.CertificateValidation.fromDnsMultiZone({
-            key: newHz,
-          }),
         });
 
         this.hostedZones.set(key, newHz);
