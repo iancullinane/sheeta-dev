@@ -1,0 +1,25 @@
+{
+  "name": "sheeta-dev",
+  "env": {
+    "account": "208744038881",
+    "region": "us-east-2"
+  },
+  "networks": {
+    "sheeta.cloud": {
+      "nsRecords": [
+        "ns-1122.awsdns-12.org.",
+        "ns-2015.awsdns-59.co.uk.",
+        "ns-30.awsdns-03.com.",
+        "ns-908.awsdns-49.net."
+      ]
+    },
+    "sheeta.green": {
+      "new": true
+    }
+  },
+  "sites": [
+    {
+      "tld": "iancullinane.rocks"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+[Unit]
+Description=Start the project zomboid server script as a service
+AssertPathExists=/mnt/survive/start-server.sh
+
+[Service]
+RemainAfterExit=yes
+Restart=always
+RestartSec=10
+StartLimitInterval=0
+TimeoutStartSec=0
+ExecStart=/bin/sh -c '/mnt/survive/start-server.sh -servername BestTimeEver -adminpassword PasswordXYZ -cachedir=/mnt/survive'
+
+[Install]
+WantedBy=multi-user.target

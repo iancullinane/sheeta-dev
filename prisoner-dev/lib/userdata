@@ -1,0 +1,11 @@
+#!/bin/bash
+#cloud-config
+
+repo_update: true
+repo_upgrade: all
+
+packages:
+  - curl
+
+runcmd:
+  - [ sh, -c, 'echo "////THIS IS FROM cloud-config' ]
